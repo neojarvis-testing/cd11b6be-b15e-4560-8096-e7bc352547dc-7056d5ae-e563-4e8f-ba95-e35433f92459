@@ -13,9 +13,9 @@ namespace dotnetapp.Controllers
     [Route("api/[controller]")]
     public class CakeController : ControllerBase
     {
-        private readonly ICakeService _cakeService;
+        private readonly CakeService _cakeService;
 
-        public CakeController(ICakeService icakeService)
+        public CakeController(CakeService icakeService)
         {
             _cakeService = icakeService;
         } 

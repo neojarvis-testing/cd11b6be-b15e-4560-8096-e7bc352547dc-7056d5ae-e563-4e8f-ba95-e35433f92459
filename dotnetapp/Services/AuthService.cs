@@ -62,7 +62,7 @@ namespace dotnetapp.Services
         return (0, "An unexpected error occurred. Please try again later.");
     }
     }
-    public sync Task<(int, object)>Login (LoginModel model)
+    public async Task<(int, object)>Login (LoginModel model)
     {
         try
             {
@@ -97,18 +97,24 @@ namespace dotnetapp.Services
     }
     private string GenerateToken(IEnumerable<Claim> claims)
         {
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            var token = new JwtSecurityToken(
-                issuer: _configuration["Jwt:Issuer"],
-                audience: _configuration["Jwt:Audience"],
-                claims: claims,
-                expires: DateTime.Now.AddHours(1),
-                signingCredentials: creds
-            );
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            var jwtSettings = _configuration.GetSection("JWT");
+            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Secret"]));
+            var credentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+ 
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.UtcNow.AddHours(1),
+                Issuer = jwtSettings["ValidIssuer"],
+                Audience = jwtSettings["ValidAudience"],
+                SigningCredentials = credentials
+            };
+ 
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+ 
+            return tokenHandler.WriteToken(token);
         }
+ 
     }
 }
