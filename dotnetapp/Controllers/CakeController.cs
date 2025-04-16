@@ -10,7 +10,7 @@ using dotnetapp.Services;
 namespace dotnetapp.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+   // [Route("api/[controller]")]
     public class CakeController : ControllerBase
     {
         private readonly CakeService _cakeService;
@@ -20,14 +20,14 @@ namespace dotnetapp.Controllers
             _cakeService = icakeService;
         } 
 
-        [HttpGet]
+        [HttpGet("/api/cakes")]
         public async Task<ActionResult<IEnumerable<Cake>>> GetAllCakes()
         {
             var cakes = await _cakeService.GetAllCakes();
             return Ok(cakes);
         }
 
-        [HttpGet("{cakeId}")]
+        [HttpGet("/api/cakes/{cakeId}")]
         public async Task<ActionResult<Cake>> GetCakeById(int cakeId)
         {
             var cake = await _cakeService.GetCakeById(cakeId);
@@ -37,15 +37,14 @@ namespace dotnetapp.Controllers
             return Ok(cake);
         }
 
-        [HttpPost]
+        [HttpPost("/api/cakes")]
         public async Task<ActionResult> AddCake([FromBody] Cake cake)
         {
             try
             {
-                var success = await _cakeService.AddCake(cake);
-                if (!success)
-                    return StatusCode(500, "Failed to add cake");
+                if(cake==null) return BadRequest("Failed to add cake");
 
+                await _cakeService.AddCake(cake);
                 return Ok("Cake added successfully");
             }
             catch (Exception e)
@@ -54,7 +53,7 @@ namespace dotnetapp.Controllers
             }
         }
 
-        [HttpPut("{cakeId}")]
+        [HttpPut("/api/cakes/{cakeId}")]
         public async Task<ActionResult> UpdateCake(int cakeId, [FromBody] Cake cake)
         {
             try
@@ -72,7 +71,7 @@ namespace dotnetapp.Controllers
             }
         }
 
-        [HttpDelete("{cakeId}")]
+        [HttpDelete("/api/cakes/{cakeId}")]
         public async Task<ActionResult> DeleteCake(int cakeId)
         {
             try

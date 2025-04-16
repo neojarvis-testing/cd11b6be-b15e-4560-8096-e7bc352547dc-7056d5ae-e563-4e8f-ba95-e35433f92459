@@ -1,7 +1,8 @@
 # BackEnd Files
 
 dotnetapp/Migrations/
-
+dotnetapp/bin/
+dotnetapp/obj/
 dotnetapp/cred.sh
 
 
@@ -10,6 +11,7 @@ dotnetapp/cred.sh
 reactapp/node_modules
 
 reactapp/src/apiConfig.js
+reactapp/src/tests
 
 reactapp/package-lock.json
 
@@ -18,5 +20,5 @@ reactapp/package-lock.json
 
 /nunit
 /react
-
+/TestProject/
 

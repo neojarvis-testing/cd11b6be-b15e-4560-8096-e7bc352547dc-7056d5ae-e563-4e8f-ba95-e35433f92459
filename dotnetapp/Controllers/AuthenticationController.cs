@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using dotnetapp.Models;
+using dotnetapp.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace dotnetapp.Controllers
 {
@@ -18,21 +21,34 @@ namespace dotnetapp.Controllers
         _authService = authService;
     }
 
-    [HttpPost("/login")]
+    [HttpPost("/api/login")]
     public async Task<IActionResult> Login([FromBody] LoginModel model)
     {
-        try
-        {
-            var token = await _authService.Login(model);
-            return Created("api/auth/login", new { Token = token });
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, $"Error: {ex.Message}");
-        }
+        // try
+        // {
+        //     //var (token) = await _authService.Login(model);
+        //    // return Created("api/auth/login", new { Token = token });
+
+        // }
+        // catch (Exception ex)
+        // {
+        //     return StatusCode(500, $"Error: {ex.Message}");
+        // }
+        if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+ 
+            var (statusCode, result) = await _authService.Login(model);
+            if (statusCode == 400)
+            {
+                return BadRequest(new { Message = result });
+            }
+ 
+            return Ok(result);
     }
 
-    [HttpPost("/register")]
+    [HttpPost("/api/register")]
     public async Task<IActionResult> Register([FromBody] User model)
     {
         try
