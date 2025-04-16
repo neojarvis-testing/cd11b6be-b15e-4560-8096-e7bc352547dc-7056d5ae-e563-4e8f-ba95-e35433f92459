@@ -11,5 +11,43 @@ namespace dotnetapp.Controllers
     public class AuthenticationController : ControllerBase
     {
         
+    private readonly IAuthService _authService;
+
+    public AuthenticationController(IAuthService authService)
+    {
+        _authService = authService;
     }
+
+    [HttpPost("/login")]
+    public async Task<IActionResult> Login([FromBody] LoginModel model)
+    {
+        try
+        {
+            var token = await _authService.Login(model);
+            return Created("api/auth/login", new { Token = token });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Error: {ex.Message}");
+        }
+    }
+
+    [HttpPost("/register")]
+    public async Task<IActionResult> Register([FromBody] User model)
+    {
+        try
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Invalid registration details");
+
+            await _authService.Registration(model, model.UserRole);
+            return Created("api/auth/register", "User registered successfully");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Error: {ex.Message}");
+        }
+    }
+}
+
 }
