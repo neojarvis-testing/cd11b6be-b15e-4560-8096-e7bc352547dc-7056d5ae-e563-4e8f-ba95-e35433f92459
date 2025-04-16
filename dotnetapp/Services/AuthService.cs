@@ -62,7 +62,7 @@ namespace dotnetapp.Services
         return (0, "An unexpected error occurred. Please try again later.");
     }
     }
-    public sync Task<(int, object)>Login (LoginModel model)
+    public async Task<(int, object)>Login (LoginModel model)
     {
         try
             {
