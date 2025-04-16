@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using dotnetapp.Models;
+using dotnetapp.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace dotnetapp.Controllers
 {
@@ -18,7 +21,7 @@ namespace dotnetapp.Controllers
         _authService = authService;
     }
 
-    [HttpPost("/login")]
+    [HttpPost("/api/login")]
     public async Task<IActionResult> Login([FromBody] LoginModel model)
     {
         try
@@ -32,7 +35,7 @@ namespace dotnetapp.Controllers
         }
     }
 
-    [HttpPost("/register")]
+    [HttpPost("/api/register")]
     public async Task<IActionResult> Register([FromBody] User model)
     {
         try
