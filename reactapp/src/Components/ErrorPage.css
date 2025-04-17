@@ -1,0 +1,12 @@
+.error-page {
+    margin-top: 50px;
+}
+
+.error-page img {
+    max-width: 100%;
+    height: auto;
+}
+
+.error-page button {
+    margin-top: 20px;
+}
