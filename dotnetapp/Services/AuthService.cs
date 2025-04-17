@@ -113,9 +113,9 @@ namespace dotnetapp.Services
         private string GenerateToken(IEnumerable<Claim> claims)
         {
             var jwtSettings = _configuration.GetSection("JWT");
+
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"]));
             var credentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
@@ -129,5 +129,6 @@ namespace dotnetapp.Services
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
+ 
     }
 }
