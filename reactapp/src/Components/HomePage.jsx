@@ -2,7 +2,9 @@ import React from 'react'
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <div>
+      <img src="cakecraftcoverimage.jpeg" alt="CakeCraft Cover" />
+    </div>
   )
 }
 
