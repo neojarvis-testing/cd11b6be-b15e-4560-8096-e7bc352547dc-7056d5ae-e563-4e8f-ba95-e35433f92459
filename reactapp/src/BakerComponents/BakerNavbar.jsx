@@ -13,7 +13,6 @@ const BakerNavbar = () => {
         <li><Link to="/logout">Logout</Link></li>
 
       </ul>
-
     </nav>
     </div>
     
