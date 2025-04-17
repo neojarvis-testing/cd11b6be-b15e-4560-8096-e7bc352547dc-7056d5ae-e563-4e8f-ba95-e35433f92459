@@ -9,7 +9,17 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin", policy =>
+    {
+        policy.WithOrigins(
+            "https://8080-cccfabeccfcbaaefeacaedadaeeefbaef.premiumproject.examly.io",
+            "https://8081-cccfabeccfcbaaefeacaedadaeeefbaef.premiumproject.examly.io") // Add frontend URL
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("connectionString")));
@@ -62,7 +72,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors("AllowSpecificOrigin");
 app.UseAuthentication(); 
 app.UseAuthorization();  
 
