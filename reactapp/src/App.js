@@ -19,9 +19,9 @@ const App = () => {
     <div className="App">
         <Routes>
             <Route path="/" element={Login}/>
-            <Route path="/add-cake" element={AddCake}/>
+       
             <Route path="/view-cake" element={ViewCake}/>
-            <Route path="/edit-cake/:id" element={EditCake}/>
+            
             <Route element={ErrorPage}/>
 
         </Routes>
