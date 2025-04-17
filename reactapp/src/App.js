@@ -11,6 +11,7 @@ import Signup from './Components/Signup'
 import CustomerNavbar from './CustomerComponents/CustomerNavbar'
 import CustomerViewCake from './CustomerComponents/CustomerViewCake'
 import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const App = () => {
   return (
@@ -18,12 +19,15 @@ const App = () => {
 
     <div className="App">
         <Routes>
-            <Route path="/" element={<Login/>}/>
-            {/* <Route path="/add-cake" element={<AddCake/>}/> */}
-            <Route path="/view-cake" element={<ViewCake/>}/>
-            {/* <Route path="/edit-cake/:id" element={<EditCake/>}/> */}
-            <Route element={ErrorPage}/>
-
+                <Route path="/" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/baker-navbar" element={<BakerNavbar />} />
+                <Route path="/customer-navbar" element={<CustomerNavbar />} />
+                <Route path="/baker-navbar" element={<BakerNavbar username="BakerUser" role="Baker" />}/>
+                <Route path="/home" element={<HomePage />} />
+                <Route path="/add-cake" element={<CakeForm isEditing={false} />} />
+                <Route path="/edit-cake" element={<CakeForm isEditing={true} />} />
+                <Route path="/view-cake" element={<ViewCake />} />
         </Routes>
     </div>
     </Router>
