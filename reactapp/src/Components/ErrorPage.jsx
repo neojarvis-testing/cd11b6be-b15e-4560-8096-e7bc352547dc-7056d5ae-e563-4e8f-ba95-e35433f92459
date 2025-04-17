@@ -1,8 +1,8 @@
 import React from 'react'
-import {useHistory} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 
 const ErrorPage = () => {
-    const history=useHistory();
+    const history=useNavigate();
 
     const handleGoBack=()=>{
         history.push('/');
