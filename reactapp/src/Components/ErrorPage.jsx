@@ -13,7 +13,6 @@ const ErrorPage = () => {
         <p>Please try again later.</p>
         <img src="/alert.png" alt="Error"/>
         <button onClick={handleGoBack}>Go to Home</button>
-
     </div>
   )
 }

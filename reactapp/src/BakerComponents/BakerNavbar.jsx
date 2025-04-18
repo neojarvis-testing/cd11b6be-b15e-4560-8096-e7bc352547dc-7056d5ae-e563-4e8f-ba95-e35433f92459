@@ -14,14 +14,6 @@ const BakerNavbar = ({ username, role }) => {
     };
     const cancelLogout = () => setShowLogoutModal(false);
 
-<<<<<<< HEAD
-      </ul>
-    </nav>
-    </div>
-    
-  )
-}
-=======
     return (
         <div>
             {/* Navigation Bar */}
@@ -66,7 +58,7 @@ const BakerNavbar = ({ username, role }) => {
                         <h1 className="image-title">CakeCraft</h1>
                     </div>
                 </div>
->>>>>>> aac3f29618f436a0d93c3d732558738698fa2281
+
 
                 {/* Description Section */}
                 <div className="description-container">
