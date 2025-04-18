@@ -28,22 +28,34 @@ const Signup = () => {
         let formErrors = {};
 
         if (!formData.username) {
-            formErrors.username = "Username is required.";
+            formErrors.username = "User Name is required";
         }
-        if (!validEmail.test(formData.email)) {
-            formErrors.email = "Invalid email format.";
+        if (!formData.email) {
+            formErrors.email = "Email is required";
         }
-        if (!validMobile.test(formData.mobileNumber)) {
-            formErrors.mobileNumber = "Invalid mobile number.";
+        else if (!validEmail.test(formData.email)) {
+            formErrors.email = "Invalid email format";
         }
-        if (formData.password.length < 8) {
-            formErrors.password = "Password must be at least 8 characters long.";
+        if (!formData.mobileNumber) {
+            formErrors.mobileNumber = "Mobile number is required";
         }
-        if (formData.password !== formData.confirmPassword) {
-            formErrors.confirmPassword = "Passwords do not match.";
+        else if (!validMobile.test(formData.mobileNumber)) {
+            formErrors.mobileNumber = "Invalid mobile number";
+        }
+        if (!formData.password) {
+            formErrors.password = "Password is required";
+        }
+        else if (formData.password.length < 8) {
+            formErrors.password = "Password must be at least 8 characters long";
+        }
+        if (!formData.confirmPassword) {
+            formErrors.confirmPassword = "Confirm Password is required";
+        }
+        else if (formData.password !== formData.confirmPassword) {
+            formErrors.confirmPassword = "Passwords do not match";
         }
         if (!formData.userRole) {
-            formErrors.userRole = "Please select a role.";
+            formErrors.userRole = "Please select a role";
         }
 
         setErrors(formErrors);
@@ -54,7 +66,7 @@ const Signup = () => {
         e.preventDefault();
         if (validate()) {
             try {
-                // Exclude confirmPassword from the payload
+                
                 const { confirmPassword, ...payload } = formData;
 
                 const response = await axios.post(`${API_BASE_URL}/register`, payload);
@@ -69,7 +81,7 @@ const Signup = () => {
     };
 
     const redirectToLogin = () => {
-        navigate('/login'); // Navigate to the login page
+        navigate('/login'); 
     };
 
     return (
@@ -94,7 +106,6 @@ const Signup = () => {
                                 onChange={handleChange} 
                                 className="form-control" 
                                 placeholder="Username" 
-                                required 
                             />
                             {errors.username && <span className="text-danger">{errors.username}</span>}
                         </div>
@@ -107,7 +118,7 @@ const Signup = () => {
                                 onChange={handleChange} 
                                 className="form-control" 
                                 placeholder="Email" 
-                                required 
+                                
                             />
                             {errors.email && <span className="text-danger">{errors.email}</span>}
                         </div>
@@ -120,7 +131,7 @@ const Signup = () => {
                                 onChange={handleChange} 
                                 className="form-control" 
                                 placeholder="Mobile Number" 
-                                required 
+                                
                             />
                             {errors.mobileNumber && <span className="text-danger">{errors.mobileNumber}</span>}
                         </div>
@@ -133,7 +144,7 @@ const Signup = () => {
                                 onChange={handleChange} 
                                 className="form-control" 
                                 placeholder="Password" 
-                                required 
+                                
                             />
                             {errors.password && <span className="text-danger">{errors.password}</span>}
                         </div>
@@ -146,7 +157,7 @@ const Signup = () => {
                                 onChange={handleChange} 
                                 className="form-control" 
                                 placeholder="Confirm Password" 
-                                required 
+                                
                             />
                             {errors.confirmPassword && <span className="text-danger">{errors.confirmPassword}</span>}
                         </div>
@@ -157,7 +168,7 @@ const Signup = () => {
                                 value={formData.userRole} 
                                 onChange={handleChange} 
                                 className="form-control" 
-                                required 
+                                
                             >
                                 <option value="">--Select Role--</option>
                                 <option value="Baker">Baker</option>
