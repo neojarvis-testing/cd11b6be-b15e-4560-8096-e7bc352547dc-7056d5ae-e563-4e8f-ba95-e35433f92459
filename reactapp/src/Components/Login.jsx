@@ -1,36 +1,115 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import {jwtDecode} from 'jwt-decode'; // Import jwt-decode
+import 'bootstrap/dist/css/bootstrap.min.css';
+import API_BASE_URL from '../apiConfig';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    const history = useNavigate();
+    const [formData, setFormData] = useState({
+        email: "",
+        password: ""
+    });
 
-    const handleLogin = async (e) => {
+    const [errors, setErrors] = useState({});
+    const navigate = useNavigate();
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const validate = () => {
+        const validEmail = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+        let formErrors = {};
+
+        if (!formData.email) {
+            formErrors.email = "Email is required";
+        } else if (!validEmail.test(formData.email)) {
+            formErrors.email = "Please enter a valid email.";
+        }
+
+        if (!formData.password) {
+            formErrors.password = "Password is required";
+        } else if (formData.password.length < 6) {
+            formErrors.password = "Password must be at least 6 characters.";
+        }
+
+        setErrors(formErrors);
+        return Object.keys(formErrors).length === 0;
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const response = await axios.post('/api/login', { email, password });
-            localStorage.setItem('token', response.data.token);
-            history.push(response.data.role === 'Baker' ? '/baker' : '/customer');
-        } catch (err) {
-            setError('Invalid email or password');
+        if (validate()) {
+            try {
+                const response = await axios.post(`${API_BASE_URL}/login`,formData);
+                const { token } = response.data; // Assume backend returns a JWT token
+                localStorage.setItem('token', token);
+                const decodedToken = jwtDecode(token); // Decode the token
+
+                const role = decodedToken.role; // Extract the role from the token
+                const username = decodedToken.username; // Extract the username from the token
+
+                // Navigate based on role
+                if (role === "Baker") {
+                    navigate("/baker-navbar", { state: { username, role } });
+                } else if (role === "Customer") {
+                    navigate("/customer-navbar", { state: { username, role } });
+                }
+            } catch (error) {
+                console.error("Login failed:", error.response?.data || error.message);
+                setErrors({ apiError: "Invalid email or password." });
+            }
         }
     };
 
     return (
-        <div>
-            <h2>Login</h2>
-            <form onSubmit={handleLogin}>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
-                <button type="submit">Login</button>
-            </form>
-            {error && <p>{error}</p>}
+        <div className="container-fluid vh-100 d-flex">
+            <div className="row w-100">
+                <div className="col-md-6 d-flex flex-column justify-content-center align-items-center bg-primary text-white p-5">
+                    <h1>CakeCraft</h1>
+                    <p className="text-center">
+                        Unleash your dessert dreams! Dive into a world of stunning cakes, from festive celebrations to everyday indulgences. Handcrafted with love, each bite is a delight!
+                    </p>
+                </div>
+                <div className="col-md-6 d-flex flex-column justify-content-center align-items-center bg-light p-5">
+                    <h2>Login</h2>
+                    <form onSubmit={handleSubmit} className="w-75">
+                        <div className="form-group mb-3">
+                            <label>Email:</label>
+                            <input 
+                                type="email" 
+                                name="email" 
+                                value={formData.email} 
+                                onChange={handleChange} 
+                                className="form-control" 
+                                placeholder="Email" 
+                            />
+                            {errors.email && <span className="text-danger">{errors.email}</span>}
+                        </div>
+                        <div className="form-group mb-3">
+                            <label>Password:</label>
+                            <input 
+                                type="password" 
+                                name="password" 
+                                value={formData.password} 
+                                onChange={handleChange} 
+                                className="form-control" 
+                                placeholder="Password" 
+                                
+                            />
+                            {errors.password && <span className="text-danger">{errors.password}</span>}
+                        </div>
+                        {errors.apiError && <span className="text-danger">{errors.apiError}</span>}
+                        <button type="submit" className="btn btn-primary w-100">Login</button>
+                    </form>
+                    <p className="mt-3">
+                        Don't have an account? <span style={{ color: 'blue', cursor: 'pointer' }} onClick={() => navigate('/signup')}>Signup</span>
+                    </p>
+                </div>
+            </div>
         </div>
     );
 };
 
 export default Login;
-

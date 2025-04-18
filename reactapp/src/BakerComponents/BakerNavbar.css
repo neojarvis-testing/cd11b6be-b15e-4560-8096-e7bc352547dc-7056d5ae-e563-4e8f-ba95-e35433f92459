@@ -1,0 +1,68 @@
+
+/* Navigation Bar */
+.baker-navbar {
+    background: linear-gradient(to right, #8a2be2, #d896ff); /* Gradient background */
+    padding: 10px 0;
+}
+
+/* Main Content */
+.main-content {
+    text-align: center;
+    background-color: #f8f9fa;
+}
+
+/* Image Section */
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 70vh; /* 70% of the viewport height */
+    overflow: hidden;
+}
+
+.cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image scales properly */
+}
+
+.image-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    padding: 10px 50px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.image-title {
+    color: black;
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Description Section */
+.description-container {
+    padding: 20px;
+}
+
+.description-text {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+}
+
+/* Footer */
+.footer {
+    background-color: #343a40;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
