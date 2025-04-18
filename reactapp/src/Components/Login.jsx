@@ -23,13 +23,13 @@ const Login = () => {
         let formErrors = {};
 
         if (!formData.email) {
-            formErrors.email = "Email is required.";
+            formErrors.email = "Email is required";
         } else if (!validEmail.test(formData.email)) {
             formErrors.email = "Please enter a valid email.";
         }
 
         if (!formData.password) {
-            formErrors.password = "Password is required.";
+            formErrors.password = "Password is required";
         } else if (formData.password.length < 6) {
             formErrors.password = "Password must be at least 6 characters.";
         }
@@ -43,8 +43,8 @@ const Login = () => {
         if (validate()) {
             try {
                 const response = await axios.post(`${API_BASE_URL}/login`,formData);
-
                 const { token } = response.data; // Assume backend returns a JWT token
+                localStorage.setItem('token', token);
                 const decodedToken = jwtDecode(token); // Decode the token
 
                 const role = decodedToken.role; // Extract the role from the token
@@ -84,7 +84,6 @@ const Login = () => {
                                 onChange={handleChange} 
                                 className="form-control" 
                                 placeholder="Email" 
-                                required 
                             />
                             {errors.email && <span className="text-danger">{errors.email}</span>}
                         </div>
@@ -97,7 +96,7 @@ const Login = () => {
                                 onChange={handleChange} 
                                 className="form-control" 
                                 placeholder="Password" 
-                                required 
+                                
                             />
                             {errors.password && <span className="text-danger">{errors.password}</span>}
                         </div>

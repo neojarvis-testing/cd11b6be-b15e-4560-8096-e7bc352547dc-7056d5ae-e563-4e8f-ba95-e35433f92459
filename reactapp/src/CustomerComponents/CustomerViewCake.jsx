@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import CustomerNavbar from './CustomerNavbar';
 
 const CustomerViewCakes = () => {
     const [cakes, setCakes] = useState([]);
@@ -19,7 +20,8 @@ const CustomerViewCakes = () => {
 
     return (
         <div>
-            <h2>View Cakes</h2>
+            <CustomerNavbar/>
+            <h2>Available Cakes</h2>
             {error && <p>{error}</p>}
             <ul>
                 {cakes.map(cake => (
