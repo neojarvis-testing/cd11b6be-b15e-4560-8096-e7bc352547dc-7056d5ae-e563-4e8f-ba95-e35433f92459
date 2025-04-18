@@ -83,11 +83,10 @@ const Signup = () => {
     };
 
     const redirectToLogin = () => {
-<<<<<<< HEAD
         navigate('/'); // Navigate to the login page
-=======
+
         navigate('/login'); 
->>>>>>> 87e1c6c718fd858883e27ffde970e63227265476
+
     };
 
     return (
