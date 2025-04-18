@@ -13,7 +13,7 @@ const BakerNavbar = ({ username, role }) => {
         navigate('/');
     };
     const cancelLogout = () => setShowLogoutModal(false);
-        //NavBar
+
     return (
         <div>
             {/* Navigation Bar */}
