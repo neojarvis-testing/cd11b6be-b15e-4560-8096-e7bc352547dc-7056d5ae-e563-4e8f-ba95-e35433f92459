@@ -29,7 +29,7 @@ const CustomerNavbar = ({ username, role }) => {
                                 Home
                             </Nav.Link>
                             <NavDropdown title="Cakes" id="basic-nav-dropdown" className="text-white">
-                                <NavDropdown.Item as={Link} to="/customer/view-cakes">View Cakes</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to="/customer/viewcakes">View Cakes</NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to="/customer/orders">Your Orders</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>

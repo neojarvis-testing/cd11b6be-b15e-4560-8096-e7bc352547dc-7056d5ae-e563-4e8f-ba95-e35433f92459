@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../apiConfig';
 
 const CustomerViewCakes = () => {
     const [cakes, setCakes] = useState([]);
@@ -8,14 +9,31 @@ const CustomerViewCakes = () => {
     useEffect(() => {
         const fetchCakes = async () => {
             try {
-                const response = await axios.get('/api/cakes');
+                const token = localStorage.getItem("jwtToken"); // Retrieve token
+                const response = await axios.get(`${API_BASE_URL}/api/cakes`, {
+                    headers: {
+                        Authorization: `Bearer ${token}` // Pass token in header
+                    }
+                });
                 setCakes(response.data);
             } catch (err) {
                 setError('Failed to fetch cakes');
             }
         };
-        fetchCakes();
     }, []);
+
+    const handleLogin = async () => {
+        try {
+            const response = await axios.post(`${API_BASE_URL}/login`, { username, password });
+            localStorage.setItem("jwtToken", response.data.token); // Store token
+            navigate("/customer/viewcakes");
+        } catch (error) {
+            setError("Login failed");
+        }
+    };
+    
+    
+    
 
     return (
         <div>

@@ -14,8 +14,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowSpecificOrigin", policy =>
     {
         policy.WithOrigins(
-            "https://8080-cccfabeccfcbaaefeacaedadaeeefbaef.premiumproject.examly.io",
-            "https://8081-cccfabeccfcbaaefeacaedadaeeefbaef.premiumproject.examly.io") // Add frontend URL
+            "https://8081-cccfabeccfcbaaefeacaedadaeeefbaef.premiumproject.examly.io")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -70,6 +69,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 
 app.UseHttpsRedirection();
 app.UseCors("AllowSpecificOrigin");

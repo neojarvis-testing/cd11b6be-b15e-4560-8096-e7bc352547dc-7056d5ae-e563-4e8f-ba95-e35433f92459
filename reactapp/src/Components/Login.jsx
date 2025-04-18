@@ -49,6 +49,9 @@ const Login = () => {
 
                 const role = decodedToken.role; // Extract the role from the token
                 const username = decodedToken.username; // Extract the username from the token
+                localStorage.setItem("userRole", role);
+                localStorage.setItem("username", username);
+                localStorage.setItem("jwtToken", token);
 
                 // Navigate based on role
                 if (role === "Baker") {
