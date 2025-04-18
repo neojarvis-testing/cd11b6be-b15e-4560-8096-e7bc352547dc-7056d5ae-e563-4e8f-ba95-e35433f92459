@@ -19,7 +19,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpGet("/api/cakes")]
-        [Authorize(Roles = "Customer,Baker")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Cake>>> GetAllCakes()
         {
             var cakes = await _cakeService.GetAllCakes();
@@ -27,7 +27,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpGet("/api/cakes/{cakeId}")]
-        [Authorize(Roles = "Customer,Baker")]
+        [Authorize]
         public async Task<ActionResult<Cake>> GetCakeById(int cakeId)
         {
             var cake = await _cakeService.GetCakeById(cakeId);
