@@ -1,9 +1,10 @@
 /* Image Section */
 .homepage-image-container {
     position: relative;
-    width: 100%;
-    height: 70vh; /* 70% of the viewport height */
+    width: calc(100% - 500px); /* Leave 20px space on both sides */
+    height: 70vh; /* 60% of the viewport height */
     overflow: hidden;
+    margin: 0 auto; /* Center the container horizontally */
 }
 
 .homepage-image {
@@ -47,6 +48,6 @@
 .homepage-footer {
     background-color: #343a40;
     color: white;
-    padding: 1px 0;
+    padding: 10px 0;
     text-align: center;
 }
