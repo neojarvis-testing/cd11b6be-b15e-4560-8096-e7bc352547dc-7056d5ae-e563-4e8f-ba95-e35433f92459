@@ -1,12 +1,30 @@
+/* ErrorPage.css */
 .error-page {
-    margin-top: 50px;
+    height: 100vh;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-.error-page img {
+.error-image {
     max-width: 100%;
     height: auto;
 }
 
-.error-page button {
-    margin-top: 20px;
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+p {
+    font-size: 1.2rem;
+    color: #6c757d;
+}
+
+button {
+    font-size: 1rem;
+    font-weight: bold;
 }
