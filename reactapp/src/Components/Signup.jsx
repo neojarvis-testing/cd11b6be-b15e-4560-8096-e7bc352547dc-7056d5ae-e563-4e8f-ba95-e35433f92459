@@ -76,21 +76,9 @@ const Signup = () => {
             }
         }
     };
-<<<<<<< HEAD
-
-    const redirectToLogin = () => {
-
-        navigate('/'); // Navigate to the login page
-        navigate('/login'); 
-        navigate('/'); 
-
-    };
-
-=======
  
     const redirectToLogin = () => navigate('/'); // Navigate to the login page
  
->>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
     return (
         <div
             className="container-fluid vh-100 d-flex align-items-center justify-content-center"
