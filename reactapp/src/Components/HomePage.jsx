@@ -1,25 +1,45 @@
 
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
+=======
+
+import React from 'react';
+>>>>>>> d7e574112047d7de14f08a75131fa0561aec3601
 import './HomePage.css'; // Import external CSS
 import BakerNavbar from '../BakerComponents/BakerNavbar';
+import CustomerNavbar from '../CustomerComponents/CustomerNavbar';
 
 const HomePage = () => {
     const username = localStorage.getItem('username') || 'Guest'; // Get the username from localStorage
     const role = localStorage.getItem('role') || 'Customer'; // Get the user's role from localStorage
-    const [showLogoutModal, setShowLogoutModal] = useState(false); // State to control the logout modal
 
-    
-    const confirmLogout = () => {
-        setShowLogoutModal(false); // Close the modal
-        localStorage.clear(); // Clear user session
-        window.location.href = '/'; // Redirect to the login page
+    // Render Role-Based Content
+    const renderRoleBasedContent = () => {
+        if (role === 'Baker') {
+            return (
+                <div className="container text-center py-4">
+                    <h2>Welcome, Baker!</h2>
+                </div>
+            );
+        } else {
+            return (
+                <div className="container text-center py-4">
+                    <h2>Welcome, Customer!</h2>
+                </div>
+            );
+        }
     };
-    const cancelLogout = () => setShowLogoutModal(false); // Close the modal without logging out
 
     return (
         <div>
-            <BakerNavbar username={username} role={role} />
+            {/* Dynamic Navbar */}
+            {role === 'Baker' ? (
+                <BakerNavbar username={username} role={role} />
+            ) : (
+                <CustomerNavbar username={username} role={role} />
+            )}
+
             {/* Image Section */}
             <div className="homepage-image-container">
                 <img
@@ -30,10 +50,8 @@ const HomePage = () => {
                 <h1 className="homepage-title-with-background">CakeCraft</h1>
             </div>
 
-            {/* Role-Based Welcome Message */}
-            <div className="container text-center py-4">
-                <h2>Welcome, {role === 'Baker' ? 'Baker' : 'Customer'}!</h2>
-            </div>
+            {/* Role-Based Content */}
+            {renderRoleBasedContent()}
 
             {/* Footer Section */}
             <footer className="homepage-footer">
@@ -43,22 +61,6 @@ const HomePage = () => {
                     <p>Phone: 123-456-7890</p>
                 </div>
             </footer>
-
-            {/* Logout Confirmation Modal */}
-            <Modal show={showLogoutModal} onHide={cancelLogout} centered>
-                <Modal.Header closeButton>
-                    <Modal.Title>Confirm Logout</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Are you sure you want to logout?</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={cancelLogout}>
-                        Cancel
-                    </Button>
-                    <Button variant="danger" onClick={confirmLogout}>
-                        Yes, Logout
-                    </Button>
-                </Modal.Footer>
-            </Modal>
         </div>
     );
 };
