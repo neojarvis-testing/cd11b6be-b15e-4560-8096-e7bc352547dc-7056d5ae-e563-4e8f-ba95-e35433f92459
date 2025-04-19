@@ -9,18 +9,6 @@ const ErrorPage = () => {
     const handleGoBack = () => {
         navigate('/'); // Redirect to the home page
     };
-<<<<<<< HEAD
-  return (
-    <div className="error-page">
-        <h1>Oops! Something Went Wrong</h1>
-        <p>Please try again later.</p>
-        <img src="/alert.png" alt="Error"/>
-        <button onClick={handleGoBack}>Go to Home</button>
-    </div>
-  )
-}
-=======
->>>>>>> 11438478f433fa6ec5e9efb6deb6c2558ffcd2ac
 
     return (
         <div className="error-page d-flex flex-column align-items-center justify-content-center text-center vh-100">
@@ -39,6 +27,5 @@ const ErrorPage = () => {
             </button>
         </div>
     );
-};
-
+    };
 export default ErrorPage;

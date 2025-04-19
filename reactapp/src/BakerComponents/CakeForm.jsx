@@ -175,6 +175,7 @@ const CakeForm = ({ mode }) => {
                             <label htmlFor="quantity">Quantity<span className="text-danger">*</span></label>
                             <input
                                 type="number"
+                                min="1"
                                 id="quantity"
                                 name="quantity"
                                 className="form-control"
