@@ -4,40 +4,40 @@ import axios from 'axios';
 import { jwtDecode } from 'jwt-decode'; // Import jwt-decode
 import 'bootstrap/dist/css/bootstrap.min.css';
 import API_BASE_URL from '../apiConfig';
- 
+
 const Login = () => {
     const [formData, setFormData] = useState({
         email: "",
         password: ""
     });
- 
+
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
- 
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
- 
+
     const validate = () => {
         const validEmail = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
         let formErrors = {};
- 
+
         if (!formData.email) {
             formErrors.email = "Email is required";
         } else if (!validEmail.test(formData.email)) {
             formErrors.email = "Please enter a valid email.";
         }
- 
+
         if (!formData.password) {
             formErrors.password = "Password is required";
         } else if (formData.password.length < 6) {
             formErrors.password = "Password must be at least 6 characters.";
         }
- 
+
         setErrors(formErrors);
         return Object.keys(formErrors).length === 0;
     };
- 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (validate()) {
@@ -45,25 +45,14 @@ const Login = () => {
                 const response = await axios.post(`${API_BASE_URL}/login`, formData);
                 const { token } = response.data; // Assume backend returns a JWT token
                 localStorage.setItem('token', token);
-<<<<<<< HEAD
-   
-=======
->>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
                 // Decode the token
                 const decodedToken = jwtDecode(token);
                 console.log(decodedToken);
                 // Extract and store username and role
                 const username = decodedToken.name; // Ensure the backend includes 'username' in the token
                 const role = decodedToken.role;
-<<<<<<< HEAD
-               
                 localStorage.setItem('username', username);
                 localStorage.setItem('role', role);
-   
-=======
-                localStorage.setItem('username', username);
-                localStorage.setItem('role', role);
->>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
                 // Navigate to the homepage
                 navigate('/home');
             } catch (error) {
@@ -72,7 +61,7 @@ const Login = () => {
             }
         }
     };
- 
+
     return (
         <div className="container-fluid vh-100 d-flex align-items-center justify-content-center" style={{ backgroundColor: "#f4f0fa" }}>
             <div className="row w-100 shadow-lg rounded overflow-hidden" style={{ maxWidth: "900px", border: "1px solid #e0d4f3" }}>
@@ -88,16 +77,6 @@ const Login = () => {
                     <h2 className="text-center mb-4" style={{ color: "#6a5acd", fontWeight: "bold" }}>Login</h2>
                     <form onSubmit={handleSubmit} className="w-100">
                         <div className="form-group mb-3">
-<<<<<<< HEAD
-                            <label>Email:</label>
-                            <input
-                                type="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                className="form-control"
-                                placeholder="Email"
-=======
                             <label htmlFor="email" style={{ fontWeight: "500", color: "#4b0082" }}>Email:</label>
                             <input
                                 type="email"
@@ -107,21 +86,10 @@ const Login = () => {
                                 onChange={handleChange}
                                 className="form-control border-secondary"
                                 placeholder="Enter your email"
->>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
                             />
                             {errors.email && <span className="text-danger">{errors.email}</span>}
                         </div>
                         <div className="form-group mb-3">
-<<<<<<< HEAD
-                            <label>Password:</label>
-                            <input
-                                type="password"
-                                name="password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                className="form-control"
-                                placeholder="Password"
-=======
                             <label htmlFor="password" style={{ fontWeight: "500", color: "#4b0082" }}>Password:</label>
                             <input
                                 type="password"
@@ -131,7 +99,6 @@ const Login = () => {
                                 onChange={handleChange}
                                 className="form-control border-secondary"
                                 placeholder="Enter your password"
->>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
                             />
                             {errors.password && <span className="text-danger">{errors.password}</span>}
                         </div>
@@ -153,5 +120,5 @@ const Login = () => {
         </div>
     );
 };
- 
+
 export default Login;

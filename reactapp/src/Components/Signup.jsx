@@ -8,11 +8,7 @@ const Signup = () => {
     const [formData, setFormData] = useState({
         email: "",
         password: "",
-<<<<<<< HEAD
-       // confirmPassword: "", // For frontend validation only
-=======
         confirmPassword: "",
->>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
         username: "",
         mobileNumber: "",
         userRole: ""
@@ -67,17 +63,11 @@ const Signup = () => {
         if (validate()) {
             try {
                 const { confirmPassword, ...payload } = formData;
-<<<<<<< HEAD
-
-                const response = await axios.post(`${API_BASE_URL}/register`, payload);
-
-=======
  
                 const response = await axios.post(
                     `${API_BASE_URL}/register`,
                     payload
                 );
->>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
                 console.log("Signup successful:", response.data);
                 setIsSuccess(true); // Show success modal
             } catch (error) {
