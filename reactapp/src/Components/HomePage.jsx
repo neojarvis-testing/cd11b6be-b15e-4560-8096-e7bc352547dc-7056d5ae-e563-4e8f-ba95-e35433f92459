@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 import React from 'react';
-=======
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap';
->>>>>>> 11438478f433fa6ec5e9efb6deb6c2558ffcd2ac
 import './HomePage.css'; // Import external CSS
 
 const HomePage = () => {
