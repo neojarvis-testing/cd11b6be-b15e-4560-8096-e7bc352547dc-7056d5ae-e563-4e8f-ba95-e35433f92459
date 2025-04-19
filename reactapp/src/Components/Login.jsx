@@ -45,11 +45,7 @@ const Login = () => {
                 const response = await axios.post(`${API_BASE_URL}/login`, formData);
                 const { token } = response.data; // Assume backend returns a JWT token
                 localStorage.setItem('token', token);
-<<<<<<< HEAD
-                const decodedToken = jwtDecode(token); // Decode the token
 
-                const role = decodedToken.role; // Extract the role from the token
-                const username = decodedToken.username; // Extract the username from the token
                 localStorage.setItem("userRole", role);
                 localStorage.setItem("username", username);
                 localStorage.setItem("jwtToken", token);
@@ -60,7 +56,7 @@ const Login = () => {
                 } else if (role === "Customer") {
                     navigate("/customer-navbar", { state: { username, role } });
                 }
-=======
+
     
                 // Decode the token
                 const decodedToken = jwtDecode(token);
@@ -74,7 +70,7 @@ const Login = () => {
     
                 // Navigate to the homepage
                 navigate('/home');
->>>>>>> 11438478f433fa6ec5e9efb6deb6c2558ffcd2ac
+
             } catch (error) {
                 console.error("Login failed:", error.response?.data || error.message);
                 setErrors({ apiError: "Invalid email or password." });

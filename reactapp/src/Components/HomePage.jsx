@@ -4,8 +4,7 @@ import { Modal, Button } from 'react-bootstrap';
 import './HomePage.css'; // Import external CSS
 
 const HomePage = () => {
-<<<<<<< HEAD
-=======
+
     const username = localStorage.getItem('username') || 'Guest'; // Get the username from localStorage
     const role = localStorage.getItem('role') || 'Customer'; // Get the user's role from localStorage
     const navigate = useNavigate();
@@ -18,7 +17,7 @@ const HomePage = () => {
         navigate('/'); // Redirect to the login page
     };
     const cancelLogout = () => setShowLogoutModal(false); // Close the modal without logging out
->>>>>>> 11438478f433fa6ec5e9efb6deb6c2558ffcd2ac
+
 
     return (
         <div>
@@ -114,9 +113,6 @@ const HomePage = () => {
     );
 };
 
-<<<<<<< HEAD
 
 export default HomePage;
-=======
-export default HomePage;
->>>>>>> 11438478f433fa6ec5e9efb6deb6c2558ffcd2ac
+

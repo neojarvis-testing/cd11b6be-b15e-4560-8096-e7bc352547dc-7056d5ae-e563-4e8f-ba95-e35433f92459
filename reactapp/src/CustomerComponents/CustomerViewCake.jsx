@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-<<<<<<< HEAD
+
+
 
 import API_BASE_URL from '../apiConfig';
 
-=======
-import API_BASE_URL from '../apiConfig';
->>>>>>> 11438478f433fa6ec5e9efb6deb6c2558ffcd2ac
 import CustomerNavbar from './CustomerNavbar';
 
 const CustomerViewCake = () => {
@@ -24,13 +22,13 @@ const CustomerViewCake = () => {
     useEffect(() => {
         const fetchCakes = async () => {
             try {
-<<<<<<< HEAD
-                const token = localStorage.getItem("jwtToken"); // Retrieve token
-                const response = await axios.get(`${API_BASE_URL}/api/cakes`, {
-                    headers: {
-                        Authorization: `Bearer ${token}` // Pass token in header
-                    }
-=======
+
+                // const token = localStorage.getItem("jwtToken"); // Retrieve token
+                // const response = await axios.get(`${API_BASE_URL}/api/cakes`, {
+                //     headers: {
+                //         Authorization: `Bearer ${token}` // Pass token in header
+                //     }
+
                 const token = localStorage.getItem('token'); // Ensure token exists
                 if (!token) {
                     throw new Error('No token found. Please login.');
@@ -39,7 +37,7 @@ const CustomerViewCake = () => {
                     headers: {
                         Authorization: `Bearer ${token}`, // Include token in request header
                     },
->>>>>>> 11438478f433fa6ec5e9efb6deb6c2558ffcd2ac
+
                 });
                 setCakes(response.data);
             } catch (err) {
@@ -49,7 +47,7 @@ const CustomerViewCake = () => {
                 setLoading(false);
             }
         };
-<<<<<<< HEAD
+
     }, []);
 
     const handleLogin = async () => {
@@ -64,7 +62,7 @@ const CustomerViewCake = () => {
     
     
     
-=======
+
 
         fetchCakes();
     }, []);
