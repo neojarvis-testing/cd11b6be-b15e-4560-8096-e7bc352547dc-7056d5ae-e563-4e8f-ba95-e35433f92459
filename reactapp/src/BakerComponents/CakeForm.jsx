@@ -1,11 +1,15 @@
+
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import API_BASE_URL from '../apiConfig';
 import BakerNavbar from './BakerNavbar';
- 
-const CakeForm = ({ isEditing, initialData = {} }) => {
+
+const CakeForm = ({ mode }) => {
+    const navigate = useNavigate();
+    const { id } = useParams(); // Get the cake ID from the URL params
+
     const [formData, setFormData] = useState({
         name: '',
         category: '',
@@ -17,21 +21,30 @@ const CakeForm = ({ isEditing, initialData = {} }) => {
     const [showPopup, setShowPopup] = useState(false);
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
- 
-    // Populate formData when editing and initialData is provided
+    const [formError, setFormError] = useState('');
+
+    // Fetch cake data when editing
     useEffect(() => {
-        if (isEditing && initialData) {
-            setFormData({
-                name: initialData.name || '',
-                category: initialData.category || '',
-                price: initialData.price || '',
-                quantity: initialData.quantity || '',
-                cakeImage: initialData.cakeImage || null,
-            });
-        }
-    }, [isEditing, initialData]);
- 
+        const fetchCakeData = async () => {
+            if (mode === 'edit' && id) {
+                setLoading(true);
+                try {
+                    const response = await axios.get(`${API_BASE_URL}/cakes/${id}`, {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        },
+                    });
+                    setFormData(response.data);
+                } catch (error) {
+                    setFormError('Error fetching cake data');
+                } finally {
+                    setLoading(false);
+                }
+            }
+        };
+        fetchCakeData();
+    }, [mode, id]);
+
     const validateForm = () => {
         const newErrors = {};
         if (!formData.name) newErrors.name = 'Name is required';
@@ -42,10 +55,10 @@ const CakeForm = ({ isEditing, initialData = {} }) => {
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
- 
+
     const handleChange = (e) => {
         const { name, value, files } = e.target;
- 
+
         if (files && files.length > 0) {
             const file = files[0];
             setFileName(file.name);
@@ -64,64 +77,47 @@ const CakeForm = ({ isEditing, initialData = {} }) => {
             }));
         }
     };
- 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-   
+
         // Validate form before submission
         if (!validateForm()) return;
-   
+
         setLoading(true);
-   
+
         try {
             const token = localStorage.getItem('token');
             const headers = {
                 Authorization: `Bearer ${token}`,
             };
-   
-            console.log('Payload:', formData); // Debugging: Log the payload
-   
-            if (isEditing) {
+
+            if (mode === 'edit') {
                 // PUT request to update the cake
-                const response = await axios.put(
-                    `${API_BASE_URL}/cakes/${initialData.cakeId}`,
-                    formData,
-                    { headers }
-                );
-                console.log('Cake updated successfully:', response.data);
+                await axios.put(`${API_BASE_URL}/cakes/${id}`, formData, { headers });
             } else {
                 // POST request to create a new cake
-                const response = await axios.post(
-                    `${API_BASE_URL}/cakes`,
-                    formData,
-                    { headers }
-                );
-                console.log('Cake added successfully:', response.data);
+                await axios.post(`${API_BASE_URL}/cakes`, formData, { headers });
             }
-   
+
             setLoading(false);
             setShowPopup(true);
         } catch (error) {
             setLoading(false);
             console.error('Error saving cake:', error);
-   
-            if (error.response) {
-                console.error('Error response:', error.response.data); // Log backend error details
-            }
-   
+
             if (error.response && error.response.status === 401) {
-                console.error('Unauthorized: Redirecting to login');
                 localStorage.removeItem('token');
                 navigate('/');
             }
         }
     };
- 
+
     const handlePopupClose = () => {
         setShowPopup(false);
         navigate('/view-cake');
     };
- 
+
     return (
         <div className="container mt-5">
             <BakerNavbar username="DemoBaker" role="Baker" />
@@ -130,7 +126,8 @@ const CakeForm = ({ isEditing, initialData = {} }) => {
             </button>
             <div className="card mx-auto" style={{ maxWidth: '600px' }}>
                 <div className="card-body p-4">
-                    <h2 className="card-title text-center mb-4">{isEditing ? 'Edit Cake' : 'Create New Cake'}</h2>
+                    <h2 className="card-title text-center mb-4">{mode === 'edit' ? 'Edit Cake' : 'Create New Cake'}</h2>
+                    {formError && <p className="text-danger text-center">{formError}</p>}
                     <form onSubmit={handleSubmit}>
                         <div className="form-group mb-3">
                             <label htmlFor="name">Name<span className="text-danger">*</span></label>
@@ -212,13 +209,13 @@ const CakeForm = ({ isEditing, initialData = {} }) => {
                             {loading ? (
                                 <span className="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
                             ) : (
-                                isEditing ? 'Update Cake' : 'Add Cake'
+                                mode === 'edit' ? 'Update Cake' : 'Add Cake'
                             )}
                         </button>
                     </form>
                 </div>
             </div>
- 
+
             {/* Success Modal */}
             {showPopup && (
                 <div className="modal fade show d-block" tabIndex="-1" role="dialog">
@@ -229,7 +226,7 @@ const CakeForm = ({ isEditing, initialData = {} }) => {
                             </div>
                             <div className="modal-body text-center">
                                 <p className="mb-0">
-                                    {isEditing ? 'Cake updated successfully!' : 'Cake added successfully!'}
+                                    {mode === 'edit' ? 'Cake updated successfully!' : 'Cake added successfully!'}
                                 </p>
                             </div>
                             <div className="modal-footer justify-content-center">
@@ -244,13 +241,5 @@ const CakeForm = ({ isEditing, initialData = {} }) => {
         </div>
     );
 };
- 
+
 export default CakeForm;
- 
-
-
-
-
-
-
-
