@@ -121,93 +121,6 @@ const CakeForm = ({ mode }) => {
 
     return (
         <div className="container mt-5">
-<<<<<<< HEAD
-            <BakerNavbar username="DemoBaker" role="Baker" />
-            <button className="btn btn-link mb-3" onClick={() => navigate(-1)}>
-                Back
-            </button>
-            <div className="card mx-auto" style={{ maxWidth: '600px' }}>
-                <div className="card-body p-4">
-                    <h2 className="card-title text-center mb-4">{mode === 'edit' ? 'Edit Cake' : 'Create New Cake'}</h2>
-                    {formError && <p className="text-danger text-center">{formError}</p>}
-                    <form onSubmit={handleSubmit}>
-                        <div className="form-group mb-3">
-                            <label htmlFor="name">Name<span className="text-danger">*</span></label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                className="form-control"
-                                value={formData.name}
-                                onChange={handleChange}
-                            />
-                            {errors.name && <small className="text-danger">{errors.name}</small>}
-                        </div>
-                        <div className="form-group mb-3">
-                            <label htmlFor="category">Category<span className="text-danger">*</span></label>
-                            <select
-                                id="category"
-                                name="category"
-                                className="form-control"
-                                value={formData.category}
-                                onChange={handleChange}
-                            >
-                                <option value="">Select a category</option>
-                                <option value="Cake">Cake</option>
-                                <option value="Bread">Bread</option>
-                                <option value="Brownie">Brownie</option>
-                                <option value="Pastry">Pastry</option>
-                                <option value="Cookies">Cookies</option>
-                            </select>
-                            {errors.category && <small className="text-danger">{errors.category}</small>}
-                        </div>
-                        <div className="form-group mb-3">
-                            <label htmlFor="price">Price<span className="text-danger">*</span></label>
-                            <input
-                                type="number"
-                                id="price"
-                                name="price"
-                                className="form-control"
-                                value={formData.price}
-                                onChange={handleChange}
-                            />
-                            {errors.price && <small className="text-danger">{errors.price}</small>}
-                        </div>
-                        <div className="form-group mb-3">
-                            <label htmlFor="quantity">Quantity<span className="text-danger">*</span></label>
-                            <input
-                                type="number"
-                                min="1"
-                                id="quantity"
-                                name="quantity"
-                                className="form-control"
-                                value={formData.quantity}
-                                onChange={handleChange}
-                            />
-                            {errors.quantity && <small className="text-danger">{errors.quantity}</small>}
-                        </div>
-                        <div className="form-group mb-4">
-                            <label htmlFor="cakeImage">Cake Image<span className="text-danger">*</span></label>
-                            <div className="input-group">
-                                <input
-                                    type="file"
-                                    id="cakeImage"
-                                    name="cakeImage"
-                                    className="form-control"
-                                    onChange={handleChange}
-                                />
-                            </div>
-                            {errors.cakeImage && <small className="text-danger">{errors.cakeImage}</small>}
-                        </div>
-                        {formData.cakeImage && (
-                            <div className="text-center mb-4">
-                                <img
-                                    src={formData.cakeImage}
-                                    alt="Cake Preview"
-                                    style={{ width: '100%', maxHeight: '200px', objectFit: 'cover' }}
-                                />
-                            </div>
-=======
     <BakerNavbar username={username} role={role} />
     <div className="card mx-auto" style={{ maxWidth: '600px' }}>
         <div className="card-body p-4">
@@ -308,7 +221,6 @@ const CakeForm = ({ mode }) => {
                             <span className="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
                         ) : (
                             mode === 'edit' ? 'Update Cake' : 'Add Cake'
->>>>>>> 9361f2d430fd62d80926761eec45c4a4d13c3905
                         )}
                     </button>
                 </div>
