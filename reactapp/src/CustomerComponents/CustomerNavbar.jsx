@@ -71,11 +71,7 @@ const CustomerNavbar = ({ username, role }) => {
         </>
     );
 };
-<<<<<<< HEAD
- 
-export default CustomerNavbar;
- 
-=======
+
 
 export default CustomerNavbar;
->>>>>>> d7e574112047d7de14f08a75131fa0561aec3601
+

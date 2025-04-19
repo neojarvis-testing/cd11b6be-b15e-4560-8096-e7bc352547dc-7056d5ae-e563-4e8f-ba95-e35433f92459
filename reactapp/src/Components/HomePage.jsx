@@ -62,10 +62,5 @@ const HomePage = () => {
     );
 };
 
-<<<<<<< HEAD
-
 export default HomePage;
 
-=======
-export default HomePage;
->>>>>>> d7e574112047d7de14f08a75131fa0561aec3601
