@@ -1,15 +1,15 @@
- 
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import API_BASE_URL from '../apiConfig';
 import BakerNavbar from './BakerNavbar';
- 
+
 const CakeForm = ({ mode }) => {
     const navigate = useNavigate();
     const { id } = useParams(); // Get the cake ID from the URL params
- 
+
     const [formData, setFormData] = useState({
         name: '',
         category: '',
@@ -22,7 +22,7 @@ const CakeForm = ({ mode }) => {
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false);
     const [formError, setFormError] = useState('');
-    const username = localStorage.getItem('username') || 'Guest';
+    const username = localStorage.getItem('username') || 'Guest'; 
     const role = localStorage.getItem('role') || 'Customer';
     // Fetch cake data when editing
     useEffect(() => {
@@ -45,7 +45,7 @@ const CakeForm = ({ mode }) => {
         };
         fetchCakeData();
     }, [mode, id]);
- 
+
     const validateForm = () => {
         const newErrors = {};
         if (!formData.name) newErrors.name = 'Name is required';
@@ -56,10 +56,10 @@ const CakeForm = ({ mode }) => {
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
- 
+
     const handleChange = (e) => {
         const { name, value, files } = e.target;
- 
+
         if (files && files.length > 0) {
             const file = files[0];
             //setFileName(file.name);
@@ -78,21 +78,21 @@ const CakeForm = ({ mode }) => {
             }));
         }
     };
- 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
- 
+
         // Validate form before submission
         if (!validateForm()) return;
- 
+
         setLoading(true);
- 
+
         try {
             const token = localStorage.getItem('token');
             const headers = {
                 Authorization: `Bearer ${token}`,
             };
- 
+
             if (mode === 'edit') {
                 // PUT request to update the cake
                 await axios.put(`${API_BASE_URL}/cakes/${id}`, formData, { headers });
@@ -100,25 +100,25 @@ const CakeForm = ({ mode }) => {
                 // POST request to create a new cake
                 await axios.post(`${API_BASE_URL}/cakes`, formData, { headers });
             }
- 
+
             setLoading(false);
             setShowPopup(true);
         } catch (error) {
             setLoading(false);
             console.error('Error saving cake:', error);
- 
+
             if (error.response && error.response.status === 401) {
                 localStorage.removeItem('token');
                 navigate('/');
             }
         }
     };
- 
+
     const handlePopupClose = () => {
         setShowPopup(false);
         navigate('/view-cake');
     };
- 
+
     return (
         <div className="container mt-5">
     <BakerNavbar username={username} role={role} />
@@ -227,7 +227,7 @@ const CakeForm = ({ mode }) => {
             </form>
         </div>
     </div>
- 
+
     {/* Success Modal */}
     {showPopup && (
         <div className="modal fade show d-block" tabIndex="-1" role="dialog">
@@ -253,6 +253,5 @@ const CakeForm = ({ mode }) => {
 </div>
     );
 };
- 
+
 export default CakeForm;
- 
