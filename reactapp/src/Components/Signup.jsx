@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import API_BASE_URL from '../apiConfig';
-
+ 
 const Signup = () => {
     const [formData, setFormData] = useState({
         email: "",
@@ -13,20 +13,20 @@ const Signup = () => {
         mobileNumber: "",
         userRole: "" // Role selection
     });
-
+ 
     const [errors, setErrors] = useState({});
     const [isSuccess, setIsSuccess] = useState(false); // Tracks if signup is successful
     const navigate = useNavigate();
-
+ 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
-
+ 
     const validate = () => {
         const validEmail = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
         const validMobile = /^\d{10}$/;
         let formErrors = {};
-
+ 
         if (!formData.username) {
             formErrors.username = "User Name is required";
         }
@@ -57,18 +57,18 @@ const Signup = () => {
         if (!formData.userRole) {
             formErrors.userRole = "Please select a role";
         }
-
+ 
         setErrors(formErrors);
         return Object.keys(formErrors).length === 0;
     };
-
+ 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (validate()) {
             try {
-                
+               
                 const { confirmPassword, ...payload } = formData;
-
+ 
                 const response = await axios.post(
                     `${API_BASE_URL}/register`,
                     payload
@@ -81,11 +81,15 @@ const Signup = () => {
             }
         }
     };
-
+ 
     const redirectToLogin = () => {
-        navigate('/'); 
+ 
+        navigate('/'); // Navigate to the login page
+        navigate('/login');
+        navigate('/');
+ 
     };
-
+ 
     return (
         <div className="container-fluid vh-100 d-flex">
             <div className="row w-100">
@@ -101,76 +105,76 @@ const Signup = () => {
                     <form onSubmit={handleSubmit} className="w-75">
                         <div className="form-group mb-3">
                             <label>Username:</label>
-                            <input 
-                                type="text" 
-                                name="username" 
-                                value={formData.username} 
-                                onChange={handleChange} 
-                                className="form-control" 
-                                placeholder="Username" 
+                            <input
+                                type="text"
+                                name="username"
+                                value={formData.username}
+                                onChange={handleChange}
+                                className="form-control"
+                                placeholder="Username"
                             />
                             {errors.username && <span className="text-danger">{errors.username}</span>}
                         </div>
                         <div className="form-group mb-3">
                             <label>Email:</label>
-                            <input 
-                                type="email" 
-                                name="email" 
-                                value={formData.email} 
-                                onChange={handleChange} 
-                                className="form-control" 
-                                placeholder="Email" 
-                                
+                            <input
+                                type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                className="form-control"
+                                placeholder="Email"
+                               
                             />
                             {errors.email && <span className="text-danger">{errors.email}</span>}
                         </div>
                         <div className="form-group mb-3">
                             <label>Mobile Number:</label>
-                            <input 
-                                type="text" 
-                                name="mobileNumber" 
-                                value={formData.mobileNumber} 
-                                onChange={handleChange} 
-                                className="form-control" 
-                                placeholder="Mobile Number" 
-                                
+                            <input
+                                type="text"
+                                name="mobileNumber"
+                                value={formData.mobileNumber}
+                                onChange={handleChange}
+                                className="form-control"
+                                placeholder="Mobile Number"
+                               
                             />
                             {errors.mobileNumber && <span className="text-danger">{errors.mobileNumber}</span>}
                         </div>
                         <div className="form-group mb-3">
                             <label>Password:</label>
-                            <input 
-                                type="password" 
-                                name="password" 
-                                value={formData.password} 
-                                onChange={handleChange} 
-                                className="form-control" 
-                                placeholder="Password" 
-                                
+                            <input
+                                type="password"
+                                name="password"
+                                value={formData.password}
+                                onChange={handleChange}
+                                className="form-control"
+                                placeholder="Password"
+                               
                             />
                             {errors.password && <span className="text-danger">{errors.password}</span>}
                         </div>
                         <div className="form-group mb-3">
                             <label>Confirm Password:</label>
-                            <input 
-                                type="password" 
-                                name="confirmPassword" 
-                                value={formData.confirmPassword} 
-                                onChange={handleChange} 
-                                className="form-control" 
-                                placeholder="Confirm Password" 
-                                
+                            <input
+                                type="password"
+                                name="confirmPassword"
+                                value={formData.confirmPassword}
+                                onChange={handleChange}
+                                className="form-control"
+                                placeholder="Confirm Password"
+                               
                             />
                             {errors.confirmPassword && <span className="text-danger">{errors.confirmPassword}</span>}
                         </div>
                         <div className="form-group mb-3">
                             <label>Role:</label>
-                            <select 
-                                name="userRole" 
-                                value={formData.userRole} 
-                                onChange={handleChange} 
-                                className="form-control" 
-                                
+                            <select
+                                name="userRole"
+                                value={formData.userRole}
+                                onChange={handleChange}
+                                className="form-control"
+                               
                             >
                                 <option value="">--Select Role--</option>
                                 <option value="Baker">Baker</option>
@@ -181,7 +185,7 @@ const Signup = () => {
                         {errors.apiError && <span className="text-danger">{errors.apiError}</span>}
                         <button type="submit" className="btn btn-primary w-100">Submit</button>
                     </form>
-
+ 
                     {/* Success Modal */}
                     {isSuccess && (
                         <div className="modal show d-block" tabIndex="-1" role="dialog">
@@ -206,7 +210,7 @@ const Signup = () => {
                             </div>
                         </div>
                     )}
-
+ 
                     <p className="mt-3">
                         Already have an account? <span style={{ color: 'blue', cursor: 'pointer' }} onClick={redirectToLogin}>Login</span>
                     </p>
@@ -215,5 +219,6 @@ const Signup = () => {
         </div>
     );
 };
-
+ 
 export default Signup;
+ 
