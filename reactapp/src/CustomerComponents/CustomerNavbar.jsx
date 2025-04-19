@@ -17,7 +17,7 @@ const CustomerNavbar = ({ username, role }) => {
     return (
         <div>
             {/* Navigation Bar */}
-            <Navbar expand="lg" className="customer-navbar">
+            <Navbar expand="lg" className="baker-navbar fixed-top w-100" style={{ background: 'linear-gradient(to right, #8e44ad, #c0392b)', color: 'white' }}>
                 <Container>
                     <Navbar.Brand as={Link} to="/customer/home" className="text-white">
                         CakeCraft
@@ -43,39 +43,7 @@ const CustomerNavbar = ({ username, role }) => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
- 
-            {/* Main Content */}
-            {/* <div className="main-content"> */}
-                {/* Image Section */}
-                {/* <div className="image-container">
-                    <img
-                        src="cakecraftcoverimage.jpeg"
-                        alt="CakeCraft Cover"
-                        className="cover-image"
-                    />
-                    <div className="image-overlay">
-                        <h1 className="image-title">CakeCraft</h1>
-                    </div>
-                </div> */}
- 
-                {/* Description Section */}
-                {/* <div className="description-container">
-                    <p className="description-text">
-                        Explore a delicious selection of cakes crafted just for you! Order your favorites and enjoy a
-                        delightful experience with CakeCraft.
-                    </p>
-                </div> */}
-            {/* </div> */}
- 
-            {/* Footer */}
-            {/* <footer className="footer">
-                <Container>
-                    <p>Contact Us</p>
-                    <p>Email: example@example.com</p>
-                    <p>Phone: 123-456-7890</p>
-                </Container>
-            </footer> */}
- 
+
             {/* Logout Confirmation Modal */}
             {showLogoutModal && (
                 <div className="modal show d-block" tabIndex="-1" role="dialog">

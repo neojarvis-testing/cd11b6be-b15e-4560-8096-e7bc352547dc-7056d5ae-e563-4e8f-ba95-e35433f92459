@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import API_BASE_URL from '../apiConfig';
 import CustomerNavbar from './CustomerNavbar';
@@ -49,71 +48,77 @@ const CustomerViewCake = () => {
     }, [searchQuery, cakes]);
 
     return (
-        <div className="container mt-4">
-            <CustomerNavbar username={username} role={role} />
-            <h2 className="text-center mt-4 mb-4">Available Cakes</h2>
+        <>
+    {/* Navbar */}
+    <CustomerNavbar username={username} role={role} />
 
-            {/* Search Input */}
-            <input
-                type="text"
-                className="form-control mb-4"
-                placeholder="Search cakes by name..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-            />
+    {/* Main Content */}
+    <div className="container" style={{ marginTop: '80px' }}>
+        <h2 className="text-center mt-4 mb-4">Available Cakes</h2>
 
-            {/* Cake Table */}
-            {loading ? (
-                <div className="text-center my-5">
-                    <div className="spinner-border text-primary" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </div>
+        {/* Search Input */}
+        <input
+            type="text"
+            className="form-control mb-4"
+            placeholder="Search cakes by name..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+        />
+
+        {/* Cake Table */}
+        {loading ? (
+            <div className="text-center my-5">
+                <div className="spinner-border text-primary" role="status">
+                    <span className="visually-hidden">Loading...</span>
                 </div>
-            ) : (
-                <table className="table table-bordered table-striped text-center">
-                    <thead className="thead-dark">
+            </div>
+        ) : (
+            <table className="table table-bordered table-striped text-center">
+                <thead className="thead-dark">
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Quantity</th>
+                        <th>Price (Rs.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {error ? (
                         <tr>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Quantity</th>
-                            <th>Price (Rs.)</th>
+                            <td colSpan="5" className="text-danger text-center">
+                                {error}
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {error ? (
-                            <tr>
-                                <td colSpan="5" className="text-danger text-center">
-                                    {error}
+                    ) : filteredCakes.length > 0 ? (
+                        filteredCakes.map((cake) => (
+                            <tr key={cake.cakeId}>
+                                <td>
+                                    <img
+                                        src={cake.cakeImage || 'https://via.placeholder.com/100'}
+                                        alt={cake.name}
+                                        style={{ width: '100px', height: '50px', objectFit: 'cover' }}
+                                    />
                                 </td>
+                                <td>{cake.name}</td>
+                                <td>{cake.category}</td>
+                                <td>{cake.quantity}</td>
+                                <td>{cake.price.toFixed(2)}</td>
                             </tr>
-                        ) : filteredCakes.length > 0 ? (
-                            filteredCakes.map((cake) => (
-                                <tr key={cake.cakeId}>
-                                    <td>
-                                        <img
-                                            src={cake.cakeImage || 'https://via.placeholder.com/100'}
-                                            alt={cake.name}
-                                            style={{ width: '100px', height: '50px', objectFit: 'cover' }}
-                                        />
-                                    </td>
-                                    <td>{cake.name}</td>
-                                    <td>{cake.category}</td>
-                                    <td>{cake.quantity}</td>
-                                    <td>{cake.price.toFixed(2)}</td>
-                                </tr>
-                            ))
-                        ) : (
-                            <tr>
-                                <td colSpan="5" className="text-center text-muted">
-                                    Oops! No cakes found.
-                                </td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-            )}
-        </div>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="5" className="text-center text-muted">
+                                Oops! No cakes found.
+                            </td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
+        )}
+    </div>
+</>
+        
     );
 };
 
