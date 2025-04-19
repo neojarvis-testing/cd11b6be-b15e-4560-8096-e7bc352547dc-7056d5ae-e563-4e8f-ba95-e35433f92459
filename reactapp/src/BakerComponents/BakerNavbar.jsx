@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 
 
->>>>>>> d7e574112047d7de14f08a75131fa0561aec3601
 import React, { useState } from 'react';
 import { Navbar, Nav, Dropdown, Container, Modal, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';

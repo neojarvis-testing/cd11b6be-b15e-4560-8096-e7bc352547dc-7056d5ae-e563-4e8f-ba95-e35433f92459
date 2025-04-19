@@ -1,11 +1,6 @@
 
-<<<<<<< HEAD
-import React, { useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
-=======
 
 import React from 'react';
->>>>>>> d7e574112047d7de14f08a75131fa0561aec3601
 import './HomePage.css'; // Import external CSS
 import BakerNavbar from '../BakerComponents/BakerNavbar';
 import CustomerNavbar from '../CustomerComponents/CustomerNavbar';
