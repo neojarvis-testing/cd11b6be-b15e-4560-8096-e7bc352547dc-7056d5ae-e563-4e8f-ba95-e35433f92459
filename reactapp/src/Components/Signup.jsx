@@ -40,7 +40,7 @@ const Signup = () => {
             formErrors.mobileNumber = "Mobile number is required";
         }
         else if (!validMobile.test(formData.mobileNumber)) {
-            formErrors.mobileNumber = "Invalid mobile number";
+            formErrors.mobileNumber = "Mobile Number must be 10 characters long";
         }
         if (!formData.password) {
             formErrors.password = "Password is required";
