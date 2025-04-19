@@ -81,7 +81,7 @@ const Signup = () => {
     };
 
     const redirectToLogin = () => {
-        navigate('/login'); 
+        navigate('/'); 
     };
 
     return (

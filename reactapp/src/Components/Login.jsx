@@ -42,9 +42,10 @@ const Login = () => {
         e.preventDefault();
         if (validate()) {
             try {
-                const response = await axios.post(`${API_BASE_URL}/login`,formData);
+                const response = await axios.post(`${API_BASE_URL}/login`, formData);
                 const { token } = response.data; // Assume backend returns a JWT token
                 localStorage.setItem('token', token);
+<<<<<<< HEAD
                 const decodedToken = jwtDecode(token); // Decode the token
 
                 const role = decodedToken.role; // Extract the role from the token
@@ -59,6 +60,21 @@ const Login = () => {
                 } else if (role === "Customer") {
                     navigate("/customer-navbar", { state: { username, role } });
                 }
+=======
+    
+                // Decode the token
+                const decodedToken = jwtDecode(token);
+                console.log(decodedToken);
+                // Extract and store username and role
+                const username = decodedToken.name; // Ensure the backend includes 'username' in the token
+                const role = decodedToken.role;
+                
+                localStorage.setItem('username', username);
+                localStorage.setItem('role', role);
+    
+                // Navigate to the homepage
+                navigate('/home');
+>>>>>>> 11438478f433fa6ec5e9efb6deb6c2558ffcd2ac
             } catch (error) {
                 console.error("Login failed:", error.response?.data || error.message);
                 setErrors({ apiError: "Invalid email or password." });
@@ -99,7 +115,6 @@ const Login = () => {
                                 onChange={handleChange} 
                                 className="form-control" 
                                 placeholder="Password" 
-                                
                             />
                             {errors.password && <span className="text-danger">{errors.password}</span>}
                         </div>

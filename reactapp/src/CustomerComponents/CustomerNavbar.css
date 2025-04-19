@@ -3,13 +3,21 @@
     background: linear-gradient(to right, #8a2be2, #d896ff); /* Matching gradient */
     padding: 10px 0;
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 11438478f433fa6ec5e9efb6deb6c2558ffcd2ac
 /* Main Content */
 .main-content {
     text-align: center;
     background-color: #f8f9fa;
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 11438478f433fa6ec5e9efb6deb6c2558ffcd2ac
 /* Image Section */
 .image-container {
     position: relative;
@@ -17,13 +25,21 @@
     height: 70vh; /* Same height */
     overflow: hidden;
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 11438478f433fa6ec5e9efb6deb6c2558ffcd2ac
 .cover-image {
     width: 100%;
     height: 100%;
     object-fit: cover; /* Ensures proper scaling */
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 11438478f433fa6ec5e9efb6deb6c2558ffcd2ac
 .image-overlay {
     position: absolute;
     top: 50%;
@@ -34,19 +50,31 @@
     border-radius: 5px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow */
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 11438478f433fa6ec5e9efb6deb6c2558ffcd2ac
 .image-title {
     color: black;
     font-size: 3rem;
     font-weight: bold;
     margin: 0;
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 11438478f433fa6ec5e9efb6deb6c2558ffcd2ac
 /* Description Section */
 .description-container {
     padding: 20px;
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 11438478f433fa6ec5e9efb6deb6c2558ffcd2ac
 .description-text {
     font-size: 1.2rem;
     max-width: 800px;
@@ -56,7 +84,11 @@
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adds subtle shadow */
 }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 11438478f433fa6ec5e9efb6deb6c2558ffcd2ac
 /* Footer */
 .footer {
     background-color: #343a40;
@@ -64,3 +96,5 @@
     padding: 20px 0;
     text-align: center;
 }
+ 
+ 
