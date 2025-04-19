@@ -14,13 +14,22 @@ const HomePage = () => {
         if (role === 'Baker') {
             return (
                 <div className="container text-center py-4">
-                    <h2>Welcome, Baker!</h2>
+                    <h1>Welcome, Baker!</h1>
+
+                    <p className="photo-description">
+                        Unleash your dessert dreams! Dive into a world of stunning cakes, from festive celebrations to everyday indulgences. Handcrafted with love, each bite is a delight!
+
+                    </p>
                 </div>
             );
         } else {
             return (
                 <div className="container text-center py-4">
                     <h2>Welcome, Customer!</h2>
+                    <p className="photo-description">
+                        Unleash your dessert dreams! Dive into a world of stunning cakes, from festive celebrations to everyday indulgences. Handcrafted with love, each bite is a delight!
+
+                    </p>
                 </div>
             );
         }
