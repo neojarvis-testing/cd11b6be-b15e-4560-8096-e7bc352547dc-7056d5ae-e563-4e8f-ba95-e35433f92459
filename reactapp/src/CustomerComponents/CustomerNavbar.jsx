@@ -29,7 +29,7 @@ const CustomerNavbar = ({ username, role }) => {
     return (
         <div>
             {/* Navigation Bar */}
-            <Navbar expand="lg" className="customer-navbar">
+            <Navbar expand="lg" className="baker-navbar fixed-top w-100" style={{ background: 'linear-gradient(to right, #8e44ad, #c0392b)', color: 'white' }}>
                 <Container>
                     <Navbar.Brand as={Link} to="/customer/home" className="text-white">
                         CakeCraft
@@ -64,6 +64,7 @@ const CustomerNavbar = ({ username, role }) => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
+<<<<<<< HEAD
 <<<<<<< HEAD
 
             {/* Main Content */}
@@ -126,6 +127,9 @@ const CustomerNavbar = ({ username, role }) => {
             </footer> */}
  
 >>>>>>> 11438478f433fa6ec5e9efb6deb6c2558ffcd2ac
+=======
+
+>>>>>>> 9361f2d430fd62d80926761eec45c4a4d13c3905
             {/* Logout Confirmation Modal */}
             {showLogoutModal && (
                 <div className="modal show d-block" tabIndex="-1" role="dialog">

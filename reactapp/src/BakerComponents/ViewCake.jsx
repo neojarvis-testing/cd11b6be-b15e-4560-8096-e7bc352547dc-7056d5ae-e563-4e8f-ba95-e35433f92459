@@ -45,11 +45,6 @@ const ViewCakes = () => {
         fetchCakes();
     }, [navigate]);
 
-    // Handle Add Cake Button
-    const handleAddCake = () => {
-        navigate('/add-cake'); // Navigate to CakeForm in "add" mode
-    };
-
     // Handle Edit Button
     const handleEdit = (cake) => {
         if (!cake.cakeId) {
@@ -68,7 +63,7 @@ const ViewCakes = () => {
         setSelectedCakeId(null); // Clear the selected cake ID
         setShowDeleteModal(false); // Hide the delete confirmation modal
     };
-    
+
     const confirmDelete = async () => {
         if (!selectedCakeId) {
             alert('Invalid cake selected for deletion.');
@@ -99,106 +94,110 @@ const ViewCakes = () => {
     };
 
     return (
-        <div className="container mt-5">
-            <BakerNavbar username={username} role={role} />
-            <div className="d-flex justify-content-center align-items-center mb-4">
-                <h2 className="text-center">Cakes</h2>
+        <>
+    <BakerNavbar username={username} role={role} />
+
+    {/* Main Content */}
+    <div className="container" style={{ marginTop: '80px' }}>
+        <div className="d-flex justify-content-center align-items-center mb-4">
+            <h2 className="text-center">Cakes</h2>
+        </div>
+
+        {/* Display Error */}
+        {error && <p className="text-danger text-center">{error}</p>}
+
+        {/* Display Spinner */}
+        {loading && (
+            <div className="text-center">
+                <div className="spinner-border text-primary mb-2" role="status" aria-hidden="true"></div>
+                <div className="mt-2">Loading...</div>
             </div>
+        )}
 
-            {/* Display Error */}
-            {error && <p className="text-danger text-center">{error}</p>}
-
-            {/* Display Spinner */}
-            {loading && (
-                <div className="text-center">
-                    <div className="spinner-border text-primary mb-2" role="status" aria-hidden="true"></div>
-                    <div className="mt-2">Loading...</div>
-                </div>
-            )}
-
-            {/* Always Render Table */}
-            <table className="table table-bordered table-striped text-center">
-                <thead className="thead-dark">
+        {/* Always Render Table */}
+        <table className="table table-bordered table-striped text-center">
+            <thead className="thead-dark">
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {cakes.length === 0 && !loading && !error && (
                     <tr>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Action</th>
+                        <td colSpan="6" className="text-center text-muted">
+                            <i>Oops! No cakes found.</i>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    {cakes.length === 0 && !loading && !error && (
-                        <tr>
-                            <td colSpan="6" className="text-center text-muted">
-                                <i>Oops! No cakes found.</i>
-                            </td>
-                        </tr>
-                    )}
-                    {cakes.map((cake) => (
-                        <tr key={cake.cakeId}>
-                            <td>
-                                <img
-                                    src={cake.cakeImage || 'https://via.placeholder.com/100'}
-                                    alt={cake.name || 'Cake Image'}
-                                    style={{ height: '50px', objectFit: 'cover' }}
-                                />
-                            </td>
-                            <td>{cake.name}</td>
-                            <td>{cake.category}</td>
-                            <td>{cake.quantity}</td>
-                            <td>Rs. {parseFloat(cake.price).toFixed(2)}</td>
-                            <td>
-                                <button
-                                    className="btn btn-primary btn-sm me-2"
-                                    onClick={() => handleEdit(cake)}
-                                    aria-label={`Edit ${cake.name}`}
-                                >
-                                    Edit
-                                </button>
-                                <button
-                                    className="btn btn-danger btn-sm"
-                                    onClick={() => openDeleteModal(cake.cakeId)}
-                                    aria-label={`Delete ${cake.name}`}
-                                >
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+                )}
+                {cakes.map((cake) => (
+                    <tr key={cake.cakeId}>
+                        <td>
+                            <img
+                                src={cake.cakeImage || 'https://via.placeholder.com/100'}
+                                alt={cake.name || 'Cake Image'}
+                                style={{ height: '50px', objectFit: 'cover' }}
+                            />
+                        </td>
+                        <td>{cake.name}</td>
+                        <td>{cake.category}</td>
+                        <td>{cake.quantity}</td>
+                        <td>Rs. {parseFloat(cake.price).toFixed(2)}</td>
+                        <td>
+                            <button
+                                className="btn btn-primary btn-sm me-2"
+                                onClick={() => handleEdit(cake)}
+                                aria-label={`Edit ${cake.name}`}
+                            >
+                                Edit
+                            </button>
+                            <button
+                                className="btn btn-danger btn-sm"
+                                onClick={() => openDeleteModal(cake.cakeId)}
+                                aria-label={`Delete ${cake.name}`}
+                            >
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
 
-            {/* Delete Confirmation Modal */}
-            {showDeleteModal && (
-                <div className="modal fade show d-block" tabIndex="-1" role="dialog">
-                    <div className="modal-dialog modal-dialog-centered">
-                        <div className="modal-content shadow-sm border-0">
-                            <div className="modal-header bg-danger text-white">
-                                <h5 className="modal-title mx-auto">Are you sure you want to delete this cake?</h5>
-                            </div>
-                            <div className="modal-footer justify-content-center">
-                                <button
-                                    type="button"
-                                    className="btn btn-danger px-4"
-                                    onClick={confirmDelete}
-                                >
-                                    Yes, Delete
-                                </button>
-                                <button
-                                    type="button"
-                                    className="btn btn-secondary px-4"
-                                    onClick={closeDeleteModal}
-                                >
-                                    Cancel
-                                </button>
-                            </div>
+        {/* Delete Confirmation Modal */}
+        {showDeleteModal && (
+            <div className="modal fade show d-block" tabIndex="-1" role="dialog">
+                <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content shadow-sm border-0">
+                        <div className="modal-header bg-danger text-white">
+                            <h5 className="modal-title mx-auto">Are you sure you want to delete this cake?</h5>
+                        </div>
+                        <div className="modal-footer justify-content-center">
+                            <button
+                                type="button"
+                                className="btn btn-danger px-4"
+                                onClick={confirmDelete}
+                            >
+                                Yes, Delete
+                            </button>
+                            <button
+                                type="button"
+                                className="btn btn-secondary px-4"
+                                onClick={closeDeleteModal}
+                            >
+                                Cancel
+                            </button>
                         </div>
                     </div>
                 </div>
-            )}
-        </div>
+            </div>
+        )}
+    </div>
+</>
     );
 };
 
