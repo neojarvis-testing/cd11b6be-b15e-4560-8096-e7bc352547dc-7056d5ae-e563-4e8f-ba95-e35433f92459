@@ -46,9 +46,9 @@ const BakerNavbar = ({ username, role }) => {
             </Navbar>
 
             {/* Main Content */}
-            <div className="main-content">
+            {/* <div className="main-content"> */}
                 {/* Image Section */}
-                <div className="image-container">
+                {/* <div className="image-container">
                     <img
                         src="cakecraftcoverimage.jpeg"
                         alt="CakeCraft Cover"
@@ -57,26 +57,26 @@ const BakerNavbar = ({ username, role }) => {
                     <div className="image-overlay">
                         <h1 className="image-title">CakeCraft</h1>
                     </div>
-                </div>
+                </div> */}
 
 
                 {/* Description Section */}
-                <div className="description-container">
+                {/* <div className="description-container">
                     <p className="description-text">
                         Unleash your dessert dreams! Dive into a world of stunning cakes, from festive celebrations to
                         everyday indulgences. Handcrafted with love, each bite is a delight!
                     </p>
-                </div>
-            </div>
+                </div> */}
+            {/* </div> */}
 
             {/* Footer */}
-            <footer className="footer">
+            {/* <footer className="footer">
                 <Container>
                     <p>Contact Us</p>
                     <p>Email: example@example.com</p>
                     <p>Phone: 123-456-7890</p>
                 </Container>
-            </footer>
+            </footer> */}
 
             {/* Logout Confirmation Modal */}
             {showLogoutModal && (
@@ -106,3 +106,5 @@ const BakerNavbar = ({ username, role }) => {
 };
 
 export default BakerNavbar;
+
+
