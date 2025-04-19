@@ -62,10 +62,6 @@ const Signup = () => {
         e.preventDefault();
         if (validate()) {
             try {
-<<<<<<< HEAD
-               
-=======
->>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
                 const { confirmPassword, ...payload } = formData;
  
                 const response = await axios.post(
@@ -81,17 +77,7 @@ const Signup = () => {
         }
     };
  
-<<<<<<< HEAD
-    const redirectToLogin = () => {
- 
-        navigate('/'); // Navigate to the login page
-        navigate('/login');
-        navigate('/');
- 
-    };
-=======
     const redirectToLogin = () => navigate('/'); // Navigate to the login page
->>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
  
     return (
         <div
@@ -115,134 +101,82 @@ const Signup = () => {
                     <form onSubmit={handleSubmit}>
                         {/* Username Field */}
                         <div className="form-group mb-3">
-<<<<<<< HEAD
-                            <label>Username:</label>
-=======
                             <label style={{ color: "#4b0082", fontWeight: "500" }}>Username:</label>
->>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
                             <input
                                 type="text"
                                 name="username"
                                 value={formData.username}
                                 onChange={handleChange}
                                 className="form-control"
-<<<<<<< HEAD
-                                placeholder="Username"
-=======
                                 placeholder="Enter your username"
->>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
                             />
                             {errors.username && <span className="text-danger">{errors.username}</span>}
                         </div>
  
                         {/* Email Field */}
                         <div className="form-group mb-3">
-<<<<<<< HEAD
-                            <label>Email:</label>
-=======
                             <label style={{ color: "#4b0082", fontWeight: "500" }}>Email:</label>
->>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
                             <input
                                 type="email"
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
                                 className="form-control"
-<<<<<<< HEAD
-                                placeholder="Email"
-                               
-=======
                                 placeholder="Enter your email"
->>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
                             />
                             {errors.email && <span className="text-danger">{errors.email}</span>}
                         </div>
  
                         {/* Mobile Number Field */}
                         <div className="form-group mb-3">
-<<<<<<< HEAD
-                            <label>Mobile Number:</label>
-=======
                             <label style={{ color: "#4b0082", fontWeight: "500" }}>Mobile Number:</label>
->>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
                             <input
                                 type="text"
                                 name="mobileNumber"
                                 value={formData.mobileNumber}
                                 onChange={handleChange}
                                 className="form-control"
-<<<<<<< HEAD
-                                placeholder="Mobile Number"
-                               
-=======
                                 placeholder="Enter your mobile number"
->>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
                             />
                             {errors.mobileNumber && <span className="text-danger">{errors.mobileNumber}</span>}
                         </div>
  
                         {/* Password Field */}
                         <div className="form-group mb-3">
-<<<<<<< HEAD
-                            <label>Password:</label>
-=======
                             <label style={{ color: "#4b0082", fontWeight: "500" }}>Password:</label>
->>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
                             <input
                                 type="password"
                                 name="password"
                                 value={formData.password}
                                 onChange={handleChange}
                                 className="form-control"
-<<<<<<< HEAD
-                                placeholder="Password"
-                               
-=======
                                 placeholder="Enter your password"
->>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
                             />
                             {errors.password && <span className="text-danger">{errors.password}</span>}
                         </div>
  
                         {/* Confirm Password Field */}
                         <div className="form-group mb-3">
-<<<<<<< HEAD
-                            <label>Confirm Password:</label>
-=======
                             <label style={{ color: "#4b0082", fontWeight: "500" }}>Confirm Password:</label>
->>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
                             <input
                                 type="password"
                                 name="confirmPassword"
                                 value={formData.confirmPassword}
                                 onChange={handleChange}
                                 className="form-control"
-<<<<<<< HEAD
-                                placeholder="Confirm Password"
-                               
-=======
                                 placeholder="Confirm your password"
->>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
                             />
                             {errors.confirmPassword && <span className="text-danger">{errors.confirmPassword}</span>}
                         </div>
  
                         {/* Role Selection Dropdown */}
                         <div className="form-group mb-3">
-<<<<<<< HEAD
-                            <label>Role:</label>
-=======
                             <label style={{ color: "#4b0082", fontWeight: "500" }}>Role:</label>
->>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
                             <select
                                 name="userRole"
                                 value={formData.userRole}
                                 onChange={handleChange}
                                 className="form-control"
-<<<<<<< HEAD
-                               
-=======
->>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
                             >
                                 <option value="">--Select Role--</option>
                                 <option value="Baker">Baker</option>
@@ -283,10 +217,6 @@ const Signup = () => {
                         </div>
                     )}
  
-<<<<<<< HEAD
-                    <p className="mt-3">
-                        Already have an account? <span style={{ color: 'blue', cursor: 'pointer' }} onClick={redirectToLogin}>Login</span>
-=======
                     {/* Login Redirect */}
                     <p className="mt-3 text-center">
                         Already have an account?{" "}
@@ -296,7 +226,6 @@ const Signup = () => {
                         >
                             Login
                         </span>
->>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
                     </p>
                 </div>
             </div>
@@ -304,9 +233,4 @@ const Signup = () => {
     );
 };
  
-<<<<<<< HEAD
 export default Signup;
- 
-=======
-export default Signup;
->>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
