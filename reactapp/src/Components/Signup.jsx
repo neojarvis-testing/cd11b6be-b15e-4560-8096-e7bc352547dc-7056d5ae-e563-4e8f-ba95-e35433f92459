@@ -28,7 +28,7 @@ const Signup = () => {
         let formErrors = {};
  
         if (!formData.username) {
-            formErrors.username = "Username is required";
+            formErrors.username = "User Name is required";
         }
         if (!formData.email) {
             formErrors.email = "Email is required";
@@ -195,11 +195,15 @@ const Signup = () => {
                                 onChange={handleChange}
                                 className="form-control"
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 placeholder="Password"
                                
 =======
                                 placeholder="Enter your password"
 >>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
+=======
+                                placeholder="Password"
+>>>>>>> 7c7c75f6bf3f531288b5b09cc70b5c92e31a2fb3
                             />
                             {errors.password && <span className="text-danger">{errors.password}</span>}
                         </div>
@@ -218,11 +222,15 @@ const Signup = () => {
                                 onChange={handleChange}
                                 className="form-control"
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 placeholder="Confirm Password"
                                
 =======
                                 placeholder="Confirm your password"
 >>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
+=======
+                                placeholder="Confirm Password"
+>>>>>>> 7c7c75f6bf3f531288b5b09cc70b5c92e31a2fb3
                             />
                             {errors.confirmPassword && <span className="text-danger">{errors.confirmPassword}</span>}
                         </div>
@@ -305,8 +313,12 @@ const Signup = () => {
 };
  
 <<<<<<< HEAD
+<<<<<<< HEAD
 export default Signup;
  
 =======
 export default Signup;
 >>>>>>> 72d3b3aa1c10c50564d8cc49ee268d6cedcbb4bc
+=======
+export default Signup;
+>>>>>>> 7c7c75f6bf3f531288b5b09cc70b5c92e31a2fb3

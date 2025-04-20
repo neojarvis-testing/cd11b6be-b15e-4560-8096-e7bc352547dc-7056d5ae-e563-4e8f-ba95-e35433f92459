@@ -1,68 +1,65 @@
-/* Navigation Bar */
+/* Navbar Styling */
 .customer-navbar {
-    background: linear-gradient(to right, #8a2be2, #d896ff); /* Matching gradient */
-    padding: 10px 0;
+    background: linear-gradient(to right, #8e44ad, #c0392b); /* Gradient background */
+    padding: 0.3rem 1rem; /* Reduce padding for a smaller navbar */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
- 
-/* Main Content */
-.main-content {
-    text-align: center;
-    background-color: #f8f9fa;
-}
- 
-/* Image Section */
-.image-container {
-    position: relative;
-    width: 100%;
-    height: 70vh; /* Same height */
-    overflow: hidden;
-}
- 
-.cover-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures proper scaling */
-}
- 
-.image-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
-    padding: 10px 50px;
-    border-radius: 5px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-}
- 
-.image-title {
-    color: black;
-    font-size: 3rem;
+
+/* Navbar Brand (Logo) */
+.cakecraft-logo {
+    font-family: 'Pacifico', cursive; /* Decorative font */
     font-weight: bold;
-    margin: 0;
+    font-size: 1.8rem !important; /* Keep font size for the logo */
+    color: #f8f9fa !important; /* Light color for contrast */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+    letter-spacing: 1px; /* Add slight spacing between letters */
+    display: flex;
+    align-items: center;
 }
- 
-/* Description Section */
-.description-container {
-    padding: 20px;
+
+/* Navbar Links */
+.navbar-nav .nav-link {
+    color: #f8f9fa !important; /* White text for links */
+    margin: 0 0.5rem; /* Add spacing between links */
+    font-weight: 500; /* Slightly bold text */
+    font-size: 1rem; /* Keep font size for links */
 }
- 
-.description-text {
-    font-size: 1.2rem;
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: white;
-    padding: 10px 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adds subtle shadow */
+
+.navbar-nav .nav-link:hover {
+    color: #ffd700 !important; /* Gold color on hover */
 }
- 
-/* Footer */
-.footer {
-    background-color: #343a40;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
+
+/* Dropdown Styling */
+.dropdown-toggle {
+    background-color: #6c63ff !important; /* Purple background for dropdown */
+    border: none;
+    color: white !important;
+    font-weight: 500;
+    font-size: 1rem; /* Keep font size for dropdown */
 }
- 
- 
+
+.dropdown-menu {
+    background-color: #ffffff; /* White background for dropdown menu */
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.dropdown-item {
+    color: #333 !important; /* Dark text for dropdown items */
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1; /* Light gray background on hover */
+}
+
+/* Logout Button */
+.btn-danger {
+    background-color: #e74c3c !important; /* Red background for logout button */
+    border: none;
+    font-size: 1rem; /* Keep font size for the button */
+    padding: 0.4rem 1rem; /* Adjust padding for a smaller button */
+}
+
+.btn-danger:hover {
+    background-color: #c0392b !important; /* Darker red on hover */
+}
