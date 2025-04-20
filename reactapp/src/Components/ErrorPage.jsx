@@ -11,7 +11,7 @@ const ErrorPage = () => {
     };
 
     return (
-        <div className="error-page d-flex flex-column align-items-center justify-content-center text-center vh-100">
+        <div className="private-route-container d-flex flex-column justify-content-center align-items-center">
             <img
                 src="/alert.png" // Ensure the image is in the public folder
                 alt="Error"
@@ -22,7 +22,7 @@ const ErrorPage = () => {
             <p className="text-muted mb-4">
                 Oops! Something Went Wrong. Please try again later.
             </p>
-            <button className="btn btn-primary px-4 py-2" onClick={handleGoBack}>
+            <button className="home-page" onClick={handleGoBack}>
                 Go to Home
             </button>
         </div>

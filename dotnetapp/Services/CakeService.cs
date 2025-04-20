@@ -28,25 +28,24 @@ namespace dotnetapp.Services
             await _context.SaveChangesAsync();
             return true;
         }
-        public async Task<bool> UpdateCake(int cakeId,Cake cake){
-            var exists1 = await _context.Cakes.FindAsync(cakeId);
-            if(exists1==null){
+        public async Task<bool> UpdateCake(int cakeId, Cake cake)
+        {
+            var existingCake = await _context.Cakes.FindAsync(cakeId);
+            if (existingCake == null)
+            {
                 return false;
             }
-            var exists2 = await _context.Cakes.FirstOrDefaultAsync(c=>c.Category ==cake.Category && c.CakeId !=cakeId);
-            if(exists2 != null){
-                return false;
-            }
-
-            exists1.Name=cake.Name;
-            exists1.Category = cake.Category;
-            exists1.Price = cake.Price;
-            exists1.Quantity = cake.Quantity;
-            exists1.CakeImage = cake.CakeImage;
+            existingCake.Name = !string.IsNullOrEmpty(cake.Name) ? cake.Name : existingCake.Name;
+            existingCake.Category = !string.IsNullOrEmpty(cake.Category) ? cake.Category : existingCake.Category;
+            existingCake.Quantity = cake.Quantity > 0 ? cake.Quantity : existingCake.Quantity;
+            existingCake.Price = cake.Price > 0 ? cake.Price : existingCake.Price;
+            existingCake.CakeImage = !string.IsNullOrEmpty(cake.CakeImage) ? cake.CakeImage : existingCake.CakeImage;
 
             await _context.SaveChangesAsync();
             return true;
         }
+
+
         public async Task<bool> DeleteCake(int cakeId){
          var delcake = await _context.Cakes.FindAsync(cakeId);
          if(delcake==null){

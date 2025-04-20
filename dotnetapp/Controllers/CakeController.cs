@@ -71,16 +71,21 @@ namespace dotnetapp.Controllers
                     return NotFound("Cake not found");
                 }
 
-                var cate = await _cakeService.UpdateCake(cakeId, cake);
-                if(cate==false)
-                    return BadRequest("A cake with this category already exists");
-                return Ok("Cake updated successfully");
+                var updateSuccess = await _cakeService.UpdateCake(cakeId, cake);
+                if (!updateSuccess)
+                {
+                    return BadRequest("Cake update failed. Ensure the category is unique.");
+                }
+
+                return Ok("Cake updated successfully.");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(500, "An unexpected error occurred. Please try again later.");
+                return StatusCode(500, $"Unexpected error: {ex.Message}");
             }
         }
+
+
 
         [HttpDelete("/api/cakes/{cakeId}")]
         [Authorize(Roles = "Baker")]
