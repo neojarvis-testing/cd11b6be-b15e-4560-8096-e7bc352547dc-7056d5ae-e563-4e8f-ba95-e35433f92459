@@ -1,0 +1,76 @@
+
+
+/* Table Container Styling */
+.table-container {
+    background: linear-gradient(to bottom right, #f9f9fc, #ffffff); /* Subtle gradient */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 20px; /* Add padding inside the container */
+}
+
+/* Table Styling */
+.table {
+    margin-bottom: 0; /* Remove extra margin below the table */
+    background-color: #ffffff; /* White background for the table */
+    border-radius: 10px; /* Rounded corners for the table */
+    overflow: hidden; /* Ensure rounded corners apply to the table */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.table th {
+    background-color: #6c63ff; /* Purple header background */
+    color: white; /* White text for the header */
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table td {
+    vertical-align: middle; /* Center align text vertically */
+    text-align: center; /* Center align text horizontally */
+}
+
+/* Image Styling */
+.table img {
+    border-radius: 5px; /* Rounded corners for images */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for images */
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: #6c63ff; /* Custom purple color */
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #5a54e6; /* Slightly darker purple on hover */
+}
+
+.btn-danger {
+    background-color: #ff6b6b; /* Custom red color */
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #e63946; /* Slightly darker red on hover */
+}
+
+/* Modal Styling */
+.modal-content {
+    border-radius: 10px; /* Rounded corners for the modal */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for the modal */
+}
+
+.modal-header {
+    border-bottom: none; /* Remove default border */
+}
+
+.modal-footer {
+    border-top: none; /* Remove default border */
+}
+
+/* Heading Styling */
+h2.text-center {
+    margin-bottom: 20px; /* Add spacing below the heading */
+    font-weight: bold;
+    color: #4a4a4a; /* Subtle dark gray for the heading */
+}

@@ -1,47 +1,54 @@
+body {
+    background: linear-gradient(to bottom, #f3e6fa, #fde8e8); /* Light lavender to pastel pink gradient */
+    color: #333333; /* Dark gray text for readability */
+    font-family: Arial, sans-serif; /* Clean font for consistency */
+    margin: 0;
+    padding: 0;
+}
+
 /* Image Section */
 .homepage-image-container {
     position: relative;
+<<<<<<< HEAD
     width: calc(100% - 500px); /* Leave 20px space on both sides */
     height: 70vh; /* 60% of the viewport height */
     overflow: hidden;
     margin: 0 auto; /* Center the container horizontally */
+=======
+    max-width: 330px;
+    width: 80%; /* Reduce width for better alignment */
+    height: auto; /* Allow height to adjust automatically based on the image */
+    margin: 20px auto;
+    margin-top: 65px; /* Center the image container and add space below the navbar */
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    overflow: hidden; /* Ensure no content overflows */
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for contrast */
+>>>>>>> 7c7c75f6bf3f531288b5b09cc70b5c92e31a2fb3
 }
 
 .homepage-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures the image scales properly */
+    width: 100%; /* Ensure the image spans the full width of the container */
+    height: auto; /* Maintain the aspect ratio of the image */
+    display: block; /* Remove any inline spacing */
+    margin-top: 20px;
+    border-radius: 10px; /* Add rounded corners to the image */
 }
 
+/* Title Overlay */
 .homepage-title-with-background {
     position: absolute;
     top: 50%; /* Center vertically */
-    left: 0; /* Start from the left edge */
-    right: 0; /* Extend to the right edge */
+    left: 0;
+    right: 0;
     transform: translateY(-50%); /* Center vertically */
-    padding: 15px 0; /* Adjust padding for the strip */
-    background-color: rgba(247, 246, 246, 0.5); /* Semi-transparent white background */
+    padding: 10px 0; /* Adjust padding for the strip */
+    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
     color: #000000; /* Black text for contrast */
-    font-size: 2.5rem;
+    font-size: 2rem; /* Adjust font size */
     font-weight: bold;
     text-align: center;
-}
-
-/* Description Section */
-.homepage-description-container {
-    text-align: center;
-    padding: 20px;
-    background-color: #f8f9fa;
-}
-
-.homepage-description {
-    font-size: 1.2rem;
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: white;
-    padding: 10px 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+    border-radius: 5px; /* Add rounded corners to the title background */
 }
 
 /* Footer Section */
@@ -49,5 +56,37 @@
     background-color: #343a40;
     color: white;
     padding: 10px 0;
+<<<<<<< HEAD
     text-align: center;
 }
+=======
+    text-align: center; /* Add spacing above the footer */
+}
+
+.footer-container .content {
+    display: block; /* Make each span take up the full width and appear on a new line */
+    text-align: center; /* Center-align the text */
+    margin: 5px 0; /* Add some vertical spacing between lines */
+}
+
+/* Thought Section */
+.thought {
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    background-color: #ffffff; /* White background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 15px 20px; /* Add padding for spacing */
+    margin-left: 10%; /* Center the div and add vertical spacing */
+    margin-right: 15%; /* Center the div and add vertical spacing */
+    width: 80%; /* Reduce width for better alignment */
+}
+
+.thought-text {
+    text-align: center; /* Center the text */
+    font-size: 1rem; /* Adjust font size */
+    color: #333333; /* Dark gray text color */
+    line-height: 1.5; /* Improve readability */
+}
+>>>>>>> 7c7c75f6bf3f531288b5b09cc70b5c92e31a2fb3

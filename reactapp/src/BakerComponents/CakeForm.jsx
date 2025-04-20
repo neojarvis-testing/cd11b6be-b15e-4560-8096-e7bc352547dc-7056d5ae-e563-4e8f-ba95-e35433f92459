@@ -1,4 +1,4 @@
-
+import './CakeForm.css';
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -15,7 +15,7 @@ const CakeForm = ({ mode }) => {
         category: '',
         price: '',
         quantity: '',
-        cakeImage: null,
+        cakeImage: '',
     });
     //const [fileName, setFileName] = useState('');
     const [showPopup, setShowPopup] = useState(false);
@@ -81,38 +81,50 @@ const CakeForm = ({ mode }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         // Validate form before submission
         if (!validateForm()) return;
-
+    
         setLoading(true);
-
+    
         try {
             const token = localStorage.getItem('token');
             const headers = {
                 Authorization: `Bearer ${token}`,
             };
-
+    
             if (mode === 'edit') {
                 // PUT request to update the cake
                 await axios.put(`${API_BASE_URL}/cakes/${id}`, formData, { headers });
+                setShowPopup(true); // Show success popup
             } else {
                 // POST request to create a new cake
-                await axios.post(`${API_BASE_URL}/cakes`, formData, { headers });
+                await axios.post(`${API_BASE_URL}/cakes`, formData, { headers }).then((res)=>console.log(res));
+                setShowPopup(true); // Show success popup
             }
-
+    
             setLoading(false);
-            setShowPopup(true);
         } catch (error) {
             setLoading(false);
             console.error('Error saving cake:', error);
-
-            if (error.response && error.response.status === 401) {
+            if (error.response && error.response.status === 400) {
+                
+                const errorMessage = error.response.data.message || 'Category already exists. Cannot update the cake.';
+                setFormError(errorMessage);
+            if (error.response && error.response.status === 400 && mode==="add") {
+                const errorMessage = error.response.data.message || 'Name already exists. Cannot add the cake.';
+                    setFormError(errorMessage);
+                }
+            } else if (error.response && error.response.status === 401) {
                 localStorage.removeItem('token');
                 navigate('/');
+            } else {
+                setFormError('An error occurred while saving the cake. Please try again.');
             }
         }
     };
+   
+    
 
     const handlePopupClose = () => {
         setShowPopup(false);
@@ -120,9 +132,9 @@ const CakeForm = ({ mode }) => {
     };
 
     return (
-        <div className="container mt-5">
+        <div className="container form-container">
     <BakerNavbar username={username} role={role} />
-    <div className="card mx-auto" style={{ maxWidth: '600px' }}>
+    <div className="card mx-auto shadow form-card" style={{ maxWidth: '600px' }}>
         <div className="card-body p-4">
             <h2 className="card-title text-center mb-4">{mode === 'edit' ? 'Edit Cake' : 'Create New Cake'}</h2>
             {formError && <p className="text-danger text-center">{formError}</p>}
@@ -200,7 +212,7 @@ const CakeForm = ({ mode }) => {
                         <img
                             src={formData.cakeImage}
                             alt="Cake Preview"
-                            style={{ width: '100%', maxHeight: '200px', objectFit: 'cover' }}
+                            style={{ width: '200px', maxHeight: '200px', objectFit: 'cover' }}
                         />
                     </div>
                 )}
@@ -216,6 +228,7 @@ const CakeForm = ({ mode }) => {
                         type="submit"
                         className="btn btn-primary"
                         disabled={loading}
+                        
                     >
                         {loading ? (
                             <span className="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
@@ -228,30 +241,32 @@ const CakeForm = ({ mode }) => {
         </div>
     </div>
 
-    {/* Success Modal */}
-    {showPopup && (
-        <div className="modal fade show d-block" tabIndex="-1" role="dialog">
-            <div className="modal-dialog modal-dialog-centered">
-                <div className="modal-content shadow-sm border-0">
-                    <div className="modal-header bg-success text-white">
-                        <h5 className="modal-title mx-auto">🎉 Success!</h5>
-                    </div>
-                    <div className="modal-body text-center">
-                        <p className="mb-0">
-                            {mode === 'edit' ? 'Cake updated successfully!' : 'Cake added successfully!'}
-                        </p>
-                    </div>
-                    <div className="modal-footer justify-content-center">
-                        <button type="button" className="btn btn-success px-4" onClick={handlePopupClose}>
-                            Close
-                        </button>
-                    </div>
+{/* Success Modal */}
+{showPopup && (
+    <div className="modal fade show d-block" tabIndex="-1" role="dialog">
+        <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content shadow-sm border-0 success-modal">
+                <div className="modal-header">
+                    <h5 className="modal-title mx-auto">Success</h5>
+                </div>
+                <div className="modal-body text-center">
+                    <p className="mb-0 success-message">
+                        {mode === 'edit' ? 'Cake updated successfully!' : 'Cake added successfully!'}
+                    </p>
+                </div>
+                <div className="modal-footer justify-content-center">
+                    <button type="button" className="btn btn-success px-4" onClick={handlePopupClose}>
+                        Close
+                    </button>
                 </div>
             </div>
         </div>
-    )}
+    </div>
+)}
 </div>
     );
 };
 
 export default CakeForm;
+
+

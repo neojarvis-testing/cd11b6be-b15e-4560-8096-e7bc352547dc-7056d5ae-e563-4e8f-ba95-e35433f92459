@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+
+import './ViewCake.css';
+>>>>>>> 7c7c75f6bf3f531288b5b09cc70b5c92e31a2fb3
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -92,12 +97,12 @@ const ViewCakes = () => {
     };
  
     return (
-        <>
+        <div className="container mt-5">
     <BakerNavbar username={username} role={role} />
  
     {/* Main Content */}
-    <div className="container" style={{ marginTop: '80px' }}>
-        <div className="d-flex justify-content-center align-items-center mb-4">
+    <div className="table-container">
+        <div className="d-flex justify-content-center align-items-center mb-2 mt-4">
             <h2 className="text-center">Cakes</h2>
         </div>
  
@@ -165,6 +170,7 @@ const ViewCakes = () => {
                 ))}
             </tbody>
         </table>
+<<<<<<< HEAD
  
         {/* Delete Confirmation Modal */}
         {showDeleteModal && (
@@ -190,12 +196,39 @@ const ViewCakes = () => {
                                 Cancel
                             </button>
                         </div>
+=======
+    </div>
+
+    {/* Delete Confirmation Modal */}
+    {showDeleteModal && (
+        <div className="modal fade show d-block" tabIndex="-1" role="dialog">
+            <div className="modal-dialog modal-dialog-centered">
+                <div className="modal-content shadow-sm border-0">
+                    <div className="modal-header bg-danger text-white">
+                        <h5 className="modal-title mx-auto">Are you sure you want to delete this cake?</h5>
+                    </div>
+                    <div className="modal-footer justify-content-center">
+                        <button
+                            type="button"
+                            className="btn btn-danger px-4"
+                            onClick={confirmDelete}
+                        >
+                            Yes, Delete
+                        </button>
+                        <button
+                            type="button"
+                            className="btn btn-secondary px-4"
+                            onClick={closeDeleteModal}
+                        >
+                            Cancel
+                        </button>
+>>>>>>> 7c7c75f6bf3f531288b5b09cc70b5c92e31a2fb3
                     </div>
                 </div>
             </div>
-        )}
-    </div>
-</>
+        </div>
+    )}
+</div>
     );
 };
  

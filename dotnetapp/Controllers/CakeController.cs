@@ -48,7 +48,9 @@ namespace dotnetapp.Controllers
                     return BadRequest("Invalid cake details");
                 }
 
-                await _cakeService.AddCake(cake);
+                var name=await _cakeService.AddCake(cake);
+                if(name==false)
+                    return BadRequest("A cake with this name already exists");
                 return Ok("Cake added successfully");
             }
             catch (Exception)
@@ -69,7 +71,9 @@ namespace dotnetapp.Controllers
                     return NotFound("Cake not found");
                 }
 
-                await _cakeService.UpdateCake(cakeId, cake);
+                var cate = await _cakeService.UpdateCake(cakeId, cake);
+                if(cate==false)
+                    return BadRequest("A cake with this category already exists");
                 return Ok("Cake updated successfully");
             }
             catch (Exception)
