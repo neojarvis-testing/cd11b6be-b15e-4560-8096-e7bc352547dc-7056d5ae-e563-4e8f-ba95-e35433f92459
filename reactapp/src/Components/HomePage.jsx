@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import './HomePage.css'; // Import external CSS
 import BakerNavbar from '../BakerComponents/BakerNavbar';
@@ -45,17 +43,24 @@ const HomePage = () => {
                 <h1 className="homepage-title-with-background">CakeCraft</h1>
             </div>
 
+            {/* Thought Section */}
+            <div className="thought">
+                <span className="thought-text">
+                    Unleash your dessert dreams! Dive into a world of stunning cakes, from festive celebrations to everyday indulgences. Handcrafted with love, each bite is a delight!
+                </span>
+            </div>
+
             {/* Role-Based Content */}
             {renderRoleBasedContent()}
 
             {/* Footer Section */}
             <footer className="homepage-footer">
-                <div className="container">
-                    <p>Contact Us</p>
-                    <p>Email: example@example.com</p>
-                    <p>Phone: 123-456-7890</p>
-                </div>
-            </footer>
+    <div className="footer-container">
+        <span className="content">Contact Us</span>
+        <span className="content">Email: example@example.com</span>
+        <span className="content">Phone: 123-456-7890</span>
+    </div>
+</footer>
         </div>
     );
 };

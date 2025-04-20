@@ -1,5 +1,4 @@
-
-
+import './BakerNavbar.css';
 import React, { useState } from 'react';
 import { Navbar, Nav, Dropdown, Container, Modal, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
@@ -19,11 +18,15 @@ const BakerNavbar = ({ username, role }) => {
 
     return (
         <>
-            <Navbar expand="lg" className="baker-navbar fixed-top w-100" style={{ background: 'linear-gradient(to right, #8e44ad, #c0392b)', color: 'white' }}>
+            <Navbar expand="lg" className="baker-navbar fixed-top w-100">
                 <Container>
                     {/* Left-Aligned Brand */}
-                    <Navbar.Brand as={Link} to="/home" className="text-white">
-                        CakeCraft
+                    <Navbar.Brand
+                        as={Link}
+                        to="/home"
+                        className="cakecraft-logo"
+                    >
+                        <i className="bi bi-cake2"></i><span>CakeCraft</span>
                     </Navbar.Brand>
 
                     {/* Toggle for Mobile View */}
@@ -32,11 +35,11 @@ const BakerNavbar = ({ username, role }) => {
                     {/* Right-Aligned Navigation Items */}
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
-                            <Nav.Link as={Link} to="/home" className="text-white mx-2">
+                            <Nav.Link as={Link} to="/home" className="mx-2">
                                 Home
                             </Nav.Link>
                             <Dropdown>
-                                <Dropdown.Toggle variant="primary" id="dropdown-basic" className="mx-2">
+                                <Dropdown.Toggle id="dropdown-basic" className="mx-2">
                                     Cakes
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
@@ -44,7 +47,7 @@ const BakerNavbar = ({ username, role }) => {
                                     <Dropdown.Item as={Link} to="/view-cake">View Cakes</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
-                            <Navbar.Text className="text-white mx-2">
+                            <Navbar.Text className="mx-2">
                                 {username} / {role}
                             </Navbar.Text>
                             <Nav.Link onClick={handleLogout} className="btn btn-danger text-white mx-2">
