@@ -28,7 +28,7 @@ const Signup = () => {
         let formErrors = {};
  
         if (!formData.username) {
-            formErrors.username = "Username is required";
+            formErrors.username = "User Name is required";
         }
         if (!formData.email) {
             formErrors.email = "Email is required";
@@ -150,7 +150,7 @@ const Signup = () => {
                                 value={formData.password}
                                 onChange={handleChange}
                                 className="form-control"
-                                placeholder="Enter your password"
+                                placeholder="Password"
                             />
                             {errors.password && <span className="text-danger">{errors.password}</span>}
                         </div>
@@ -164,7 +164,7 @@ const Signup = () => {
                                 value={formData.confirmPassword}
                                 onChange={handleChange}
                                 className="form-control"
-                                placeholder="Confirm your password"
+                                placeholder="Confirm Password"
                             />
                             {errors.confirmPassword && <span className="text-danger">{errors.confirmPassword}</span>}
                         </div>
