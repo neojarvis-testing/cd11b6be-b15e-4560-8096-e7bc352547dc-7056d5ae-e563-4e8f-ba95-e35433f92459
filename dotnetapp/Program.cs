@@ -13,11 +13,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin", policy =>
     {
-<<<<<<< HEAD
         policy.WithOrigins("https://8081-cccfccfacbdcbaaefeacaedadaeeefbaef.premiumproject.examly.io") // Replace with your frontend URL
-=======
-        policy.WithOrigins("https://8081-dfdbdbafddbabfcdebaaefeacaedadaeeefbaef.premiumproject.examly.io") // Replace with your frontend URL
->>>>>>> 7c7c75f6bf3f531288b5b09cc70b5c92e31a2fb3
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
