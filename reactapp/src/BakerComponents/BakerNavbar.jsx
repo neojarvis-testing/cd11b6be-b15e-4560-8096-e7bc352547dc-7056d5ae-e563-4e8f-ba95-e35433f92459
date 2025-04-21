@@ -58,6 +58,7 @@ const BakerNavbar = ({ username, role }) => {
                 </Container>
             </Navbar>
 
+
             {/* Logout Confirmation Modal */}
             <Modal show={showLogoutModal} onHide={cancelLogout} centered>
                 <Modal.Header closeButton>
@@ -78,3 +79,5 @@ const BakerNavbar = ({ username, role }) => {
 };
 
 export default BakerNavbar;
+
+

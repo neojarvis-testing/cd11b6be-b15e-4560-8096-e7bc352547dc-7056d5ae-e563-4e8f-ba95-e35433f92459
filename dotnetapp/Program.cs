@@ -13,7 +13,11 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin", policy =>
     {
+<<<<<<< HEAD
         policy.WithOrigins("https://8081-cccfabeccfcbaaefeacaedadaeeefbaef.premiumproject.examly.io") // Replace with your frontend URL
+=======
+        policy.WithOrigins("https://8081-cccfccfacbdcbaaefeacaedadaeeefbaef.premiumproject.examly.io") // Replace with your frontend URL
+>>>>>>> 8e000be7afc43835e082228f8383b7955f3ad856
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -59,6 +63,34 @@ builder.Services.AddScoped<CakeService>();
  
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+        Description = "Enter your valid JWT token.\n\nExample: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'"
+    });
+ 
+    options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+    {
+        {
+            new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+            {
+                Reference = new Microsoft.OpenApi.Models.OpenApiReference
+                {
+                    Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+});
+ 
  
 var app = builder.Build();
  
