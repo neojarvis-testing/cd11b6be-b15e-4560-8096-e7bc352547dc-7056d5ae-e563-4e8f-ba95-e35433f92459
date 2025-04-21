@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import API_BASE_URL from '../apiConfig';
 import BakerNavbar from './BakerNavbar';
 import { useNavigate } from 'react-router-dom';
-
+ 
 const ViewCakes = () => {
     const [cakes, setCakes] = useState([]);
     const [error, setError] = useState('');
@@ -16,12 +16,12 @@ const ViewCakes = () => {
     const navigate = useNavigate();
     const username = localStorage.getItem('username') || 'Guest'; // Get the username from localStorage
     const role = localStorage.getItem('role') || 'Customer'; // Get the user's role from localStorage
-
+ 
     // Fetch cakes from API
     useEffect(() => {
         const fetchCakes = async () => {
             try {
-                const token = localStorage.getItem('token'); 
+                const token = localStorage.getItem('token');
                 // Retrieve token from localStorage
                 const response = await axios.get(`${API_BASE_URL}/cakes`, {
                     headers: {
@@ -44,7 +44,7 @@ const ViewCakes = () => {
         };
         fetchCakes();
     }, [navigate]);
-
+ 
     // Handle Edit Button
     const handleEdit = (cake) => {
         if (!cake.cakeId) {
@@ -53,23 +53,23 @@ const ViewCakes = () => {
         }
         navigate(`/edit-cake/${cake.cakeId}`); // Navigate to CakeForm in "edit" mode with cake ID
     };
-
+ 
     const openDeleteModal = (cakeId) => {
         setSelectedCakeId(cakeId); // Set the selected cake ID
         setShowDeleteModal(true); // Show the delete confirmation modal
     };
-
+ 
     const closeDeleteModal = () => {
         setSelectedCakeId(null); // Clear the selected cake ID
         setShowDeleteModal(false); // Hide the delete confirmation modal
     };
-
+ 
     const confirmDelete = async () => {
         if (!selectedCakeId) {
             alert('Invalid cake selected for deletion.');
             return;
         }
-
+ 
         try {
             const token = localStorage.getItem('token'); // Retrieve token from localStorage
             await axios.delete(`${API_BASE_URL}/cakes/${selectedCakeId}`, {
@@ -78,7 +78,7 @@ const ViewCakes = () => {
                 },
             });
             setCakes(cakes.filter((cake) => cake.cakeId !== selectedCakeId)); // Remove deleted cake from state
-            
+           
         } catch (err) {
             console.error('Error deleting cake:', err);
             if (err.response && err.response.status === 401) {
@@ -92,20 +92,20 @@ const ViewCakes = () => {
             closeDeleteModal(); // Close the delete confirmation modal
         }
     };
-
+ 
     return (
         <div className="container mt-5">
     <BakerNavbar username={username} role={role} />
-
+ 
     {/* Main Content */}
     <div className="table-container">
         <div className="d-flex justify-content-center align-items-center mb-2 mt-4">
             <h2 className="text-center">Cakes</h2>
         </div>
-
+ 
         {/* Display Error */}
         {error && <p className="text-danger text-center">{error}</p>}
-
+ 
         {/* Display Spinner */}
         {loading && (
             <div className="text-center">
@@ -113,7 +113,7 @@ const ViewCakes = () => {
                 <div className="mt-2">Loading...</div>
             </div>
         )}
-
+ 
         {/* Always Render Table */}
         <table className="table table-bordered table-striped text-center">
             <thead className="thead-dark">
@@ -200,5 +200,5 @@ const ViewCakes = () => {
 </div>
     );
 };
-
+ 
 export default ViewCakes;
