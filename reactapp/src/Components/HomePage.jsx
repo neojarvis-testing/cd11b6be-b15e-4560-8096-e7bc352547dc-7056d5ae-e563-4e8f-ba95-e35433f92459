@@ -12,7 +12,7 @@ const HomePage = () => {
         if (role === 'Baker') {
             return (
                 <div className="container text-center py-4">
-                    <h2>Welcome, Baker!</h2>
+                    <h1>Welcome, Baker!</h1>
                 </div>
             );
         } else {
