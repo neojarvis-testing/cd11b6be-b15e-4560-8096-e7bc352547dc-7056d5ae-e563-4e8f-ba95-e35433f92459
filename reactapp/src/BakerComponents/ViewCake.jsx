@@ -139,7 +139,7 @@ const ViewCakes = () => {
                             <img
                                 src={cake.cakeImage || 'https://via.placeholder.com/100'}
                                 alt={cake.name || 'Cake Image'}
-                                style={{ height: '50px', objectFit: 'cover' }}
+                                style={{ height: '125px', objectFit: 'cover' }}
                             />
                         </td>
                         <td>{cake.name}</td>

@@ -38,6 +38,9 @@ const BakerNavbar = ({ username, role }) => {
                             <Nav.Link as={Link} to="/home" className="mx-2">
                                 Home
                             </Nav.Link>
+                            <Navbar.Text className="mx-2">
+                                {username} / {role}
+                            </Navbar.Text>
                             <Dropdown>
                                 <Dropdown.Toggle id="dropdown-basic" className="mx-2">
                                     Cakes
@@ -47,9 +50,6 @@ const BakerNavbar = ({ username, role }) => {
                                     <Dropdown.Item as={Link} to="/view-cake">View Cakes</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
-                            <Navbar.Text className="mx-2">
-                                {username} / {role}
-                            </Navbar.Text>
                             <Nav.Link onClick={handleLogout} className="btn btn-danger text-white mx-2">
                                 Logout
                             </Nav.Link>
