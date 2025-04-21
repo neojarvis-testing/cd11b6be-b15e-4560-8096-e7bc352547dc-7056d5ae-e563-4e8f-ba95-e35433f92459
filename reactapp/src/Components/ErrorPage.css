@@ -1,62 +1,51 @@
-/* ErrorPage.css */
-.error-page {
+/* Full Page Styling */
+.private-route-container {
     height: 100vh;
-    background-color: #f8f9fa;
+    background: linear-gradient(to bottom, #f3e6fa, #fde8e8); /* Light lavender to pastel pink gradient */
+    color: #333333;
+    text-align: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     padding: 20px;
+    font-family: "Arial", sans-serif;
 }
-
-.error-image {
-    max-width: 100%;
-    height: auto;
-}
-
-h1 {
-    font-size: 2rem;
+ 
+/* Title Styling */
+.error-title {
+    font-size: 2.5rem;
     font-weight: bold;
+    color: #b084d6; /* Soft lavender */
+    text-shadow: 1px 1px 5px rgba(176, 132, 214, 0.3); /* Gentle glow effect */
 }
-
-p {
+ 
+/* Subtitle Text */
+.error-text {
     font-size: 1.2rem;
     color: #6c757d;
+    max-width: 400px;
+    margin-bottom: 20px;
 }
-
-button {
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-/* Scoped Styling for PrivateRoute */
-.private-route-container {
-    height: 100vh; /* Full viewport height */
-    background: linear-gradient(to bottom, #f3e6fa, #fde8e8); /* Light lavender to pastel pink gradient */
-    color: #333333; /* Dark gray text for readability */
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
+ 
 /* Button Styling */
 .home-page {
     display: inline-block;
     background: linear-gradient(135deg, #b084d6, #e8a6a6); /* Soft purple to pink gradient */
     color: white;
     text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 1rem;
+    padding: 14px 28px; /* Slightly bigger padding for a premium feel */
+    border-radius: 10px; /* Softer edges for a sleek look */
+    font-size: 1.1rem; /* Slight increase for better readability */
     font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: all 0.3s ease-in-out; /* Smooth transition for effects */
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.15); /* Stronger shadow for depth */
+    border: 2px solid rgba(255, 255, 255, 0.3); /* Subtle border for definition */
 }
-
+ 
 .home-page:hover {
     background: linear-gradient(135deg, #e8a6a6, #b084d6); /* Reverse gradient on hover */
-    transform: scale(1.05); /* Slight zoom effect */
-    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15); /* Slightly deeper shadow on hover */
+    transform: scale(1.1); /* Slight zoom effect */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
 }
  

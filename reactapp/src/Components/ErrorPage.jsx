@@ -22,7 +22,7 @@ const ErrorPage = () => {
             <p className="text-muted mb-4">
                 Oops! Something Went Wrong. Please try again later.
             </p>
-            <button className="btn btn-primary px-4 py-2" onClick={handleGoBack}>
+            <button className="home-page" onClick={handleGoBack}>
                 Go to Home
             </button>
         </div>
