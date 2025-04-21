@@ -13,7 +13,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin", policy =>
     {
-        policy.WithOrigins("https://8081-cccfccfacbdcbaaefeacaedadaeeefbaef.premiumproject.examly.io") // Replace with your frontend URL
+        policy.WithOrigins("https://8081-dfdbdbafddbabfcdebaaefeacaedadaeeefbaef.premiumproject.examly.io") // Replace with your frontend URL
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -28,7 +28,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     options.Password.RequireDigit = true;
     options.Password.RequireNonAlphanumeric = true;
     options.Password.RequireUppercase = true;
-    options.Password.RequiredLength = 6;
+    options.Password.RequiredLength = 8;
 })
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
@@ -85,7 +85,6 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 });
- 
  
 var app = builder.Build();
  

@@ -1,19 +1,19 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './ErrorPage.css'; // Import external CSS for styling
+import './ErrorPage.css'; 
 
 const ErrorPage = () => {
     const navigate = useNavigate();
 
     const handleGoBack = () => {
-        navigate('/'); // Redirect to the home page
+        navigate('/'); 
     };
 
     return (
         <div className="error-page d-flex flex-column align-items-center justify-content-center text-center vh-100">
             <img
-                src="/alert.png" // Ensure the image is in the public folder
+                src="/alert.png" 
                 alt="Error"
                 className="error-image mb-4"
                 style={{ width: '150px', height: '150px' }}
