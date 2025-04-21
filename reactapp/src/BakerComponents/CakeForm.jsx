@@ -17,14 +17,12 @@ const CakeForm = ({ mode }) => {
         quantity: '',
         cakeImage: '',
     });
-    //const [fileName, setFileName] = useState('');
     const [showPopup, setShowPopup] = useState(false);
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false);
     const [formError, setFormError] = useState('');
     const username = localStorage.getItem('username') || 'Guest'; 
     const role = localStorage.getItem('role') || 'Customer';
-    // Fetch cake data when editing
     useEffect(() => {
         const fetchCakeData = async () => {
             if (mode === 'edit' && id) {
@@ -62,7 +60,6 @@ const CakeForm = ({ mode }) => {
 
         if (files && files.length > 0) {
             const file = files[0];
-            //setFileName(file.name);
             const reader = new FileReader();
             reader.onloadend = () => {
                 setFormData((prevFormData) => ({
@@ -81,8 +78,6 @@ const CakeForm = ({ mode }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
-        // Validate form before submission
         if (!validateForm()) return;
     
         setLoading(true);
@@ -94,13 +89,11 @@ const CakeForm = ({ mode }) => {
             };
     
             if (mode === 'edit') {
-                // PUT request to update the cake
                 await axios.put(`${API_BASE_URL}/cakes/${id}`, formData, { headers });
-                setShowPopup(true); // Show success popup
+                setShowPopup(true);
             } else {
-                // POST request to create a new cake
                 await axios.post(`${API_BASE_URL}/cakes`, formData, { headers }).then((res)=>console.log(res));
-                setShowPopup(true); // Show success popup
+                setShowPopup(true);
             }
     
             setLoading(false);
@@ -241,7 +234,6 @@ const CakeForm = ({ mode }) => {
         </div>
     </div>
 
-{/* Success Modal */}
 {showPopup && (
     <div className="modal fade show d-block" tabIndex="-1" role="dialog">
         <div className="modal-dialog modal-dialog-centered">
