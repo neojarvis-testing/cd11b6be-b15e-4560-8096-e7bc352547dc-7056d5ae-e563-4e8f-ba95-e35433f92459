@@ -25,7 +25,7 @@ namespace dotnetapp.Controllers
                 var (status, result) = await _authService.Login(model);
                 if (status == 1)
                 {
-                    return Created("api/auth/login", result);
+                    return Created("api/login", result);
                 }
                 return BadRequest(result);
             }
@@ -48,7 +48,7 @@ namespace dotnetapp.Controllers
                 var (status, result) = await _authService.Registration(model, model.UserRole);
                 if (status == 1)
                 {
-                    return Created("api/auth/register", result);
+                    return Created("api/register", result);
                 }
                 return BadRequest(result);
             }

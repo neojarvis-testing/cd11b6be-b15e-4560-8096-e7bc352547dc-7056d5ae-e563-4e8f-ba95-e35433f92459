@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { jwtDecode } from 'jwt-decode'; // Import jwt-decode
+import { jwtDecode } from 'jwt-decode'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import API_BASE_URL from '../apiConfig';
 
@@ -43,17 +43,14 @@ const Login = () => {
         if (validate()) {
             try {
                 const response = await axios.post(`${API_BASE_URL}/login`, formData);
-                const { token } = response.data; // Assume backend returns a JWT token
+                const { token } = response.data; 
                 localStorage.setItem('token', token);
-                // Decode the token
                 const decodedToken = jwtDecode(token);
                 console.log(decodedToken);
-                // Extract and store username and role
-                const username = decodedToken.name; // Ensure the backend includes 'username' in the token
+                const username = decodedToken.name; 
                 const role = decodedToken.role;
                 localStorage.setItem('username', username);
                 localStorage.setItem('role', role);
-                // Navigate to the homepage
                 navigate('/home');
             } catch (error) {
                 console.error("Login failed:", error.response?.data || error.message);
@@ -65,14 +62,12 @@ const Login = () => {
     return (
         <div className="container-fluid vh-100 d-flex align-items-center justify-content-center" style={{ backgroundColor: "#f4f0fa" }}>
             <div className="row w-100 shadow-lg rounded overflow-hidden" style={{ maxWidth: "900px", border: "1px solid #e0d4f3" }}>
-                {/* Left Section */}
                 <div className="col-md-6 bg-light-purple text-white d-flex flex-column justify-content-center align-items-center p-5" style={{ background: "linear-gradient(135deg, #9370db, #e6e6fa)" }}>
                     <h1 style={{ fontSize: "2.5rem", fontWeight: "bold", textShadow: "1px 1px 5px #6a5acd" }}>CakeCraft</h1>
                     <p className="text-center mt-3" style={{ fontSize: "1.1rem" }}>
                         Unleash your dessert dreams! Dive into a world of stunning cakes, from festive celebrations to everyday indulgences. Handcrafted with love, each bite is a delight!
                     </p>
                 </div>
-                {/* Right Section */}
                 <div className="col-md-6 bg-white p-5 d-flex flex-column align-items-center">
                     <h2 className="text-center mb-4" style={{ color: "#6a5acd", fontWeight: "bold" }}>Login</h2>
                     <form onSubmit={handleSubmit} className="w-100">
