@@ -53,10 +53,10 @@ jobs:
           ls -la dotnetapp/
       - name: Build and analyze dotnet
         env:
-          SONAR_TOKEN: 811c9a490983734401ba4e491eaefc8bfa7281de
+          SONAR_TOKEN: 9d7592a215aa5d6c220de85460da10eef432ae2f
           REPOSITORY_NAME: >-
             cd11b6be-b15e-4560-8096-e7bc352547dc-7056d5ae-e563-4e8f-ba95-e35433f92459
-          ORGANIZATION_NAME: iamneo-production
+          ORGANIZATION_NAME: neojarvis-testing
         run: >
           cd dotnetapp
 
